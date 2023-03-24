@@ -83,19 +83,20 @@ body {
 
 /* DROPDOWN MENU */
 .dropdown {
-    margin-left: 90%;
+    margin-left: 85%;
     overflow: hidden;
 }
 
 /* DROPDOWN  BUTTON */
 .dropdown .dropbtn {
-    font-size: 20px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
     background-color: inherit;
     font-family: inherit;
+    padding: 11px 15px;
+    font-size: 20px;
+    color: white;
+    outline: none;
+    border: none;
+    width: 50%;
     /* Important for vertical align on mobile phones */
     margin: 0;
     /* Important for vertical align on mobile phones */
