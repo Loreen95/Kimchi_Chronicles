@@ -6,6 +6,7 @@
 
 /* Generic styling */
 body {
+    font-family: Arial, Helvetica, sans-serif;
     background-color: #F2E8C4;
     margin: 0;
     padding: 0;
@@ -72,6 +73,65 @@ body {
     font-family: Arial;
 }
 
+.rightnav2 {
+    margin-left: 90%;
+    text-decoration: none;
+    list-style: none;
+    text-align: center;
+    font-family: Arial;
+}
+
+/* DROPDOWN MENU */
+.dropdown {
+    margin-left: 90%;
+    overflow: hidden;
+}
+
+/* DROPDOWN  BUTTON */
+.dropdown .dropbtn {
+    font-size: 20px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    /* Important for vertical align on mobile phones */
+    margin: 0;
+    /* Important for vertical align on mobile phones */
+}
+
+/* DROPDOWN CARD (hidden by default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
 /* Register styling */
 
 .formcontainer {
@@ -84,15 +144,15 @@ body {
 }
 
 .registerTitle {
-    padding: 22px 20px;
+    padding: 12px 10px;
 }
 
 .errors {
     border-style: solid;
     border-color: red;
     margin: 0 auto;
-    padding: 20px;
-    width: 50%;
+    padding: 10px;
+    width: 60%;
 }
 
 input[type=submit] {
@@ -108,8 +168,8 @@ input[type=submit] {
 
 .input-icons {
     width: 100%;
-    margin-top: 40px;
-    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .icon {

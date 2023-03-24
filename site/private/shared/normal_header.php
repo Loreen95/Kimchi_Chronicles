@@ -26,9 +26,22 @@ if (!isset($page_title)) {
                     <ul class="rightnav">
                         <li><a href="login.php">Inloggen</a></li>
                         <li><a href="register.php">Registreren</a></li>
-                    <?php } else { ?>
-                        <li><a href="dashboard.php"><?php echo $_SESSION['users']['first_name']; ?></a></li>
-                    <?php } ?>
                     </ul>
+                <?php } else { ?>
+                    <div class="dropdown">
+                        <button class="dropbtn">
+                            <?php echo $_SESSION['user']['first_name']; ?>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <ul class="dropList">
+                                <li><a href="dashboard.php">Instellingen</a></li>
+                                <li><a href="recipes_add.php">Recepten toevoegen</a></li>
+                                <li><a href="ingredients_add.php">Ingredienten toevoegen</a></li>
+                                <li><a href="logout.php">Uitloggen</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <?php } ?>
             </nav>
         </header>
