@@ -12,17 +12,17 @@ if (is_post_request()) {
     $user['password2'] = $_POST['password2'] ?? '';
 
     if (trim($user['firstname']) == "" && trim($user['lastname']) == "" && trim($user['email']) == "" && trim($user['password']) == "" && trim($user['password2']) == "") {
-        $error = "Vul alle velden in";
+        $error = "Vul alle velden in.";
     } elseif (trim($user['firstname']) == "") {
-        $error = "Vul je voornaam in";
+        $error = "Vul je voornaam in.";
     } elseif (trim($user['lastname']) == "") {
-        $error = "Vul je achternaam in";
+        $error = "Vul je achternaam in.";
     } elseif (trim($user['email']) == "") {
-        $error = "Vul je e-mail adres in";
+        $error = "Vul je e-mail adres in.";
     } elseif (trim($user['password']) == "") {
-        $error = "Vul je wachtwoord in";
+        $error = "Vul je wachtwoord in.";
     } elseif (trim($user['password2']) == "") {
-        $error = "Vul je wachtwoord nog een keer in";
+        $error = "Vul je wachtwoord nog een keer in.";
     } elseif ($user['password'] != $user['password2']) {
         $error = "De wachtwoorden zijn niet gelijk!";
     } else {
@@ -77,12 +77,12 @@ if (is_post_request()) {
         <div class="input-icons">
             <i class="fa fa-key icon">
             </i>
-            <input class="input-field" type="password" placeholder="Password" name="password">
+            <input class="input-field" type="password" placeholder="Wachtwoord" name="password">
         </div>
         <div class="input-icons">
             <i class="fa fa-key icon">
             </i>
-            <input class="input-field" type="password" placeholder="Verify Password" name="password2">
+            <input class="input-field" type="password" placeholder="Verifieer wachtwoord" name="password2">
         </div>
 
         <input class=" input-field" type="submit">

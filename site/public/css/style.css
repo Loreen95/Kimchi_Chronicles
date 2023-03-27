@@ -44,7 +44,7 @@ body {
 }
 
 .footer {
-    background-color: blueviolet;
+    background-color: #3D2F5F;
     color: white;
     font-size: 20px;
     overflow: hidden;
@@ -58,11 +58,23 @@ body {
 
 .navbar a {
     float: left;
+    color: white;
+    display: flex;
+    font-size: 20px;
+    padding: 10px 16px;
+    text-decoration: none;
+    justify-content: space-between;
+    /* float: left;
     font-size: 20px;
     color: white;
     text-align: center;
     padding: 10px 16px;
     text-decoration: none;
+    justify-content: space-between; */
+}
+
+.navbar a:hover {
+    color: #B17E7E;
 }
 
 .rightnav {
@@ -140,7 +152,7 @@ body {
     border-radius: 25px;
     text-align: center;
     margin: 0 auto;
-    height: 75%;
+    height: 65%;
     width: 40%;
 }
 
@@ -159,6 +171,8 @@ body {
 input[type=submit] {
     width: 70%;
     padding: 12px 20px;
+    background-color: #007B75;
+    color: white;
     margin: 10px 0;
     box-sizing: border-box;
 }
@@ -175,7 +189,7 @@ input[type=submit] {
 
 .icon {
     padding: 10px;
-    color: green;
+    color: #007B75;
     min-width: 50px;
     text-align: center;
 }
@@ -185,4 +199,80 @@ input[type=submit] {
     padding: 10px;
     box-sizing: border-box;
     text-align: center;
+}
+
+/* MAIN STYLING */
+
+
+/* Recipe Card */
+
+/* Float four columns side by side */
+.column {
+    float: left;
+    width: 23%;
+    padding: 5px 15px;
+}
+
+/* Remove extra left and right margins, due to padding in columns */
+.row {
+    margin: 0 -5px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Style the counter cards */
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 300px;
+    margin: auto;
+    height: 320px;
+    text-align: center;
+    font-family: arial;
+}
+
+.card img {
+    height: 220px;
+    width: 100%;
+}
+
+.card button {
+
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.card button:hover {
+    opacity: 0.7;
+}
+
+/* Singe recipe page */
+.content {
+    text-align: center;
+}
+
+table,
+th,
+td {
+    text-align: center;
+}
+
+/* Responsive columns - one column layout (vertical) on small screens */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+        display: block;
+        margin-bottom: 20px;
+    }
 }

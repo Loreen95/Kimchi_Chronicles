@@ -1,5 +1,5 @@
 <?php require_once('private/initialize.php'); ?>
-<?php $page_title = "Login";
+<?php $page_title = "Inloggen";
 
 if (isset($_SESSION['id'])) {
     redirect_to("index.php");
@@ -9,19 +9,27 @@ if (isset($_SESSION['id'])) {
         $user['email'] = $_POST['email'];
         $user['password'] = $_POST['password'];
 
-        $result = findUser($user);
-
-        // Email vergelijken
-        if ($user['email'] != $result['email']) {
-            echo "Het emailadres is niet geldig.";
-            // Wachtwoord vergelijken
-        } else if ($user['password'] != $result['password']) {
-            echo "Het wachtwoord is onjuist";
+        if (trim($user['email']) == "" && trim($user['password']) == "") {
+            $error = "Vul alle velden in.";
+        } elseif (trim($user['email']) == "") {
+            $error = "Vul je e-mail adres in.";
+        } elseif (trim($user['password']) == "") {
+            $error = "Vul je wachtwoord in.";
         } else {
-            // Gebruiker doorsturen
-            $_SESSION['id'] = $result['id'];
-            $_SESSION['user'] = $result;
-            redirect_to("dashboard.php");
+            $result = findUser($user);
+
+            // Email vergelijken
+            if ($user['email'] != $result['email']) {
+                $error = "Het emailadres is niet geldig.";
+                // Wachtwoord vergelijken
+            } else if ($user['password'] != $result['password']) {
+                $error = "Het wachtwoord is onjuist.";
+            } else {
+                // Gebruiker doorsturen
+                $_SESSION['id'] = $result['id'];
+                $_SESSION['user'] = $result;
+                redirect_to("dashboard.php");
+            }
         }
     }
 }

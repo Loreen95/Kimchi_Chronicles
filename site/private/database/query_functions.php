@@ -11,6 +11,28 @@ function allUsers()
     return $result->fetchAll();
 }
 
+
+function allRecipes()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT * FROM recipes");
+    $result->execute();
+
+    return $result->fetchAll();
+}
+
+function findRecipe($id)
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT * FROM recipes WHERE id = ? LIMIT 1");
+    $result->execute([$id]);
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}
+
 function addUser($user)
 {
     global $conn;

@@ -6,6 +6,9 @@
 
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
+<h1 class="articleTitle">Recente uploads</h1>
+
+
 
 <?php include(SHARED_PATH . '/main_end.php'); ?>
 
