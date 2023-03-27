@@ -19,6 +19,7 @@ $result = findRecipe($id);
     <tr>
         <th>Gerecht</th>
         <th>Ingrediënten</th>
+        <th>Instructies</th>
         <th>Foto</th>
         <th>Moeilijkheidsgraad</th>
         <th>Duratie</th>
@@ -28,9 +29,10 @@ $result = findRecipe($id);
     <?php foreach ($result as $recipe) { ?>
         <tr>
             <td>
-                <h2><?php echo $recipe['title']; ?></h2>
+                <h4><?php echo $recipe['title']; ?></h4>
             </td>
-            <td><?php echo $recipe['name']; ?></td>
+            <td><?php echo $recipe['name'];?></td>
+            <td><?php echo $recipe['steps'];?></td>
             <td><img src="public/images/<?php echo $recipe['image']; ?>" style="height: 200px; width:250px;" /></td>
             <td><?php echo $recipe['difficulty']; ?></td>
             <td><?php echo $recipe['duration']; ?></td>
