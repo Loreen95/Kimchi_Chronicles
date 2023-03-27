@@ -1,5 +1,5 @@
 <?php require_once('private/initialize.php'); ?>
-<?php $page_title = "Home";
+<?php $page_title = "Recept";
 
 $id = $_GET['id'] ?? '1';
 $result = findRecipe($id);

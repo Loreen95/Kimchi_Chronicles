@@ -28,7 +28,7 @@ if (isset($_SESSION['id'])) {
                 // Gebruiker doorsturen
                 $_SESSION['id'] = $result['id'];
                 $_SESSION['user'] = $result;
-                redirect_to("dashboard.php");
+                redirect_to("index.php");
             }
         }
     }

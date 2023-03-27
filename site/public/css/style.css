@@ -1,16 +1,27 @@
 /* Color palette */
+
+
 /* - Aubergine (#3D2F5F) */
+
+
 /* - Oud roze (#B17E7E) */
+
+
 /* - Blauwgroen (#007B75) */
+
+
 /* - Cremegeel (#F2E8C4) */
 
+
 /* Generic styling */
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #F2E8C4;
     margin: 0;
     padding: 0;
 }
+
 
 /* Grid Layout */
 
@@ -54,6 +65,7 @@ body {
     font-family: Arial;
 }
 
+
 /* Navbar styling */
 
 .navbar a {
@@ -61,7 +73,7 @@ body {
     color: white;
     display: flex;
     font-size: 20px;
-    padding: 10px 16px;
+    padding: 20px 16px;
     text-decoration: none;
     justify-content: space-between;
     /* float: left;
@@ -78,7 +90,7 @@ body {
 }
 
 .rightnav {
-    margin-left: 85%;
+    margin-left: 80%;
     text-decoration: none;
     list-style: none;
     text-align: center;
@@ -86,24 +98,28 @@ body {
 }
 
 .rightnav2 {
-    margin-left: 90%;
+    margin-left: 85%;
     text-decoration: none;
     list-style: none;
     text-align: center;
     font-family: Arial;
 }
 
+
 /* DROPDOWN MENU */
+
 .dropdown {
     margin-left: 85%;
     overflow: hidden;
 }
 
+
 /* DROPDOWN  BUTTON */
+
 .dropdown .dropbtn {
     background-color: inherit;
     font-family: inherit;
-    padding: 11px 15px;
+    padding: 20px 16px;
     font-size: 20px;
     color: white;
     outline: none;
@@ -114,7 +130,9 @@ body {
     /* Important for vertical align on mobile phones */
 }
 
+
 /* DROPDOWN CARD (hidden by default) */
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -124,7 +142,9 @@ body {
     z-index: 1;
 }
 
+
 /* Links inside the dropdown */
+
 .dropdown-content a {
     float: none;
     color: black;
@@ -134,12 +154,16 @@ body {
     text-align: left;
 }
 
+
 /* Add a grey background color to dropdown links on hover */
+
 .dropdown-content a:hover {
     background-color: #ddd;
 }
 
+
 /* Show the dropdown menu on hover */
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -201,31 +225,40 @@ input[type=submit] {
     text-align: center;
 }
 
+
 /* MAIN STYLING */
 
 
 /* Recipe Card */
 
+
 /* Float four columns side by side */
+
 .column {
     float: left;
     width: 23%;
     padding: 5px 15px;
 }
 
+
 /* Remove extra left and right margins, due to padding in columns */
+
 .row {
     margin: 0 -5px;
 }
 
+
 /* Clear floats after the columns */
+
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
 
+
 /* Style the counter cards */
+
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;
@@ -241,7 +274,6 @@ input[type=submit] {
 }
 
 .card button {
-
     border: none;
     outline: 0;
     padding: 12px;
@@ -257,7 +289,9 @@ input[type=submit] {
     opacity: 0.7;
 }
 
+
 /* Singe recipe page */
+
 .content {
     text-align: center;
 }
@@ -268,7 +302,9 @@ td {
     text-align: center;
 }
 
+
 /* Responsive columns - one column layout (vertical) on small screens */
+
 @media screen and (max-width: 600px) {
     .column {
         width: 100%;
