@@ -22,11 +22,30 @@ function allRecipes()
     return $result->fetchAll();
 }
 
+function recentAdd(){
+    global $conn;
+
+    $result = $conn->prepare("SELECT * FROM recipes ORDER BY added ASC");
+    $result->execute();
+
+    return $result->fetchAll();
+}
+function allIngredients()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT * FROM ingredients ORDER BY name ASC");
+    $result->execute();
+
+    return $result->fetchAll();
+}
+
 function findRecipe($id)
 {
     global $conn;
 
-    $result = $conn->prepare("SELECT * FROM recipes WHERE id = ? LIMIT 1");
+    // $result = $conn->prepare("SELECT *, author FROM recipe_ingredients AS author_id INNER JOIN recipes on recipe_id = recipes.id INNER JOIN ingredients on ingredient_id = ingredients.id WHERE recipes.id = ?");
+    $result = $conn->prepare("SELECT *, recipes.author, CONCAT(users.first_name, ' ', users.last_name) AS author_name FROM recipe_ingredients INNER JOIN recipes ON recipe_id = recipes.id INNER JOIN ingredients ON ingredient_id = ingredients.id INNER JOIN users ON recipes.author = users.id WHERE recipes.id = ? LIMIT 1");
     $result->execute([$id]);
     $result->setFetchMode(PDO::FETCH_ASSOC);
 

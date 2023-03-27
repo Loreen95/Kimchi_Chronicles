@@ -9,6 +9,11 @@ $result = allRecipes();
 
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
+<h1>Receptenlijst</h1>
+<?php 
+if (!$result){?>
+    <h1>Er zijn nog geen gerechten toegevoegd</h1>
+<?php } ?>
 
 <div class="row">
     <?php foreach ($result as $recipe) { ?>

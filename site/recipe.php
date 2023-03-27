@@ -11,21 +11,39 @@ $result = findRecipe($id);
 
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
-
+<h1>Ingrediëntenlijst</h1>
 <div id="content">
     <a class="terug-link" href="index.php">&laquo; Terug</a>
 </div>
-
-<table>
+<table class="tabel">
     <tr>
-        <th>test</th>
+        <th>Gerecht</th>
+        <th>Ingrediënten</th>
+        <th>Foto</th>
+        <th>Moeilijkheidsgraad</th>
+        <th>Duratie</th>
+        <th>Gang</th>
+        <th>Actie</th>
     </tr>
     <?php foreach ($result as $recipe) { ?>
         <tr>
-            <td><?php echo $recipe['title']; ?></td>
-            <td><img src="public/images/<?php echo $recipe['image']; ?>" style="width: 70%;" /></td>
+            <td>
+                <h2><?php echo $recipe['title']; ?></h2>
+            </td>
+            <td><?php echo $recipe['name']; ?></td>
+            <td><img src="public/images/<?php echo $recipe['image']; ?>" style="height: 200px; width:250px;" /></td>
+            <td><?php echo $recipe['difficulty']; ?></td>
+            <td><?php echo $recipe['duration']; ?></td>
+            <td><?php echo $recipe['course']; ?></td>
+            <td>
+                <?php if (!isset($_SESSION['id']) || $_SESSION['id'] != $recipe['author']) { ?>
+                    <h5>Geen acties beschikbaar.</h5>
+                <?php } else { ?>
+                    <a href="recipe_edit.php?id=<?php echo $id; ?>">Aanpassen</a>
+            <?php }
+            } ?>
+            </td>
         </tr>
-    <?php } ?>
 </table>
 
 <?php include(SHARED_PATH . '/main_end.php'); ?>
