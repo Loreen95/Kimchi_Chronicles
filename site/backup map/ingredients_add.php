@@ -7,7 +7,7 @@ if (is_post_request()) {
     $ingredient = [];
     $ingredient['name'] = $_POST['name'] ?? '';
 
-    $result = addRecipe($ingredient);
+    $result = addIngredient($ingredient);
 }
 ?>
 

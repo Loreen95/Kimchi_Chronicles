@@ -87,6 +87,16 @@ function addInstructions($recipe)
     return $result;
 }
 
+function addIngredient($ingredient){
+    global $conn; 
+
+    $result = $conn->prepare("INSERT INTO ingredients (name) VALUES (:name)");
+    $result->bindParam(':name', $ingredient['name']);
+
+    $result->execute();
+    return $result;
+}
+
 function addRecipe($recipe)
 {
     global $conn;

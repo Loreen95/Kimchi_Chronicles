@@ -18,30 +18,37 @@ if (!isset($page_title)) {
 <body>
     <div class="container">
         <header class="header">
-            <nav class="navbar">
-                <a href="index.php">Home</a>
-                <a href="recipes.php">Receptenlijst</a>
-                <a href="ingredients.php">Ingrediëntenlijst</a>
-                <?php if (!isset($_SESSION['id'])) { ?>
-                    <ul class="rightnav">
-                        <li><a href="login.php">Inloggen</a></li>
-                        <li><a href="register.php">Registreren</a></li>
-                    </ul>
-                <?php } else { ?>
-                    <div class="dropdown">
-                        <button class="dropbtn">
-                            <?php echo $_SESSION['user']['first_name']; ?>
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <ul class="dropList">
-                                <li><a href="dashboard.php">Instellingen</a></li>
-                                <li><a href="recipes_add.php">Recepten toevoegen</a></li>
-                                <li><a href="ingredients_add.php">Ingredienten toevoegen</a></li>
-                                <li><a href="logout.php">Uitloggen</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                <?php } ?>
-            </nav>
+            <h1><a href="index.php">Kimchi Chronicles</a></h1>
         </header>
+        <!-- Top navigation -->
+        <div class="topnav">
+
+            <!-- Centered link -->
+            <div class="topnav-centered">
+                <a href="index.php">Home</a>
+                <a href="recipes.php">Recepten</a>
+                <a href="ingredients.php">Ingredienten</a>
+            </div>
+            <?php if (!isset($_SESSION['id'])) { ?>
+                <ul class="rightnav">
+                    <li><a href="login.php">Inloggen</a></li>
+                    <li><a href="register.php">Registreren</a></li>
+                </ul>
+            <?php } else { ?>
+                <div class="dropdown topnav-right">
+                    <button class="dropbtn">
+                        <?php echo $_SESSION['user']['first_name']; ?>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <ul class="dropList">
+                            <li><a href="dashboard.php">Instellingen</a></li>
+                            <li><a href="recipes_add.php">Recepten toevoegen</a></li>
+                            <li><a href="ingredients_add.php">Ingredienten toevoegen</a></li>
+                            <li><a href="logout.php">Uitloggen</a></li>
+                        </ul>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        
