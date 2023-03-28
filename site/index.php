@@ -7,6 +7,7 @@
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
 
+<img class="mainImg" src="public/images/background-image.jpg">
 
 
 <?php include(SHARED_PATH . '/main_end.php'); ?>
