@@ -22,7 +22,8 @@ function allRecipes()
     return $result->fetchAll();
 }
 
-function recentAdd(){
+function recentAdd()
+{
     global $conn;
 
     $result = $conn->prepare("SELECT * FROM recipes ORDER BY added ASC");
@@ -51,8 +52,7 @@ INNER JOIN recipes ON recipe_id = recipes.id
 INNER JOIN ingredients ON ingredient_id = ingredients.id 
 INNER JOIN users ON recipes.author = users.id 
 INNER JOIN instructions ON recipes.id = instructions.recipe_id
-WHERE recipes.id = ?
-LIMIT 1;");
+WHERE recipes.id = ? LIMIT 1;");
     $result->execute([$id]);
     $result->setFetchMode(PDO::FETCH_ASSOC);
 

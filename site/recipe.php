@@ -31,8 +31,8 @@ $result = findRecipe($id);
             <td>
                 <h4><?php echo $recipe['title']; ?></h4>
             </td>
-            <td><?php echo $recipe['name'];?></td>
-            <td><?php echo $recipe['steps'];?></td>
+            <td><?php echo $recipe['name']; ?></td>
+            <td><?php echo $recipe['steps']; ?></td>
             <td><img src="public/images/<?php echo $recipe['image']; ?>" style="height: 200px; width:250px;" /></td>
             <td><?php echo $recipe['difficulty']; ?></td>
             <td><?php echo $recipe['duration']; ?></td>
