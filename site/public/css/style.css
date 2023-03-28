@@ -4,15 +4,16 @@
     /* - Blauwgroen (#007B75) */
     /* - Cremegeel (#F2E8C4) */
     /* Generic styling */
-    
+
     body {
         font-family: Arial, Helvetica, sans-serif;
         background-color: #F2E8C4;
         margin: 0;
         padding: 0;
     }
+
     /* Grid Layout */
-    
+
     .container {
         height: 100vh;
         display: grid;
@@ -20,28 +21,28 @@
         grid-template-rows: 1.2fr 15fr 1.2fr;
         grid-template-areas: "header header header" ". . ." "footer footer footer";
     }
-    
+
     .header {
         grid-area: header;
         overflow: hidden;
         background-color: #3D2F5F;
         font-family: Arial;
     }
-    
+
     .sidebar-l {
         background-color: #007B75;
     }
-    
+
     .content {
         background-color: #F2E8C4;
         grid-column-start: 2;
         grid-column-end: 3;
     }
-    
+
     .sidebar-r {
         background-color: #007B75;
     }
-    
+
     .footer {
         background-color: #3D2F5F;
         color: white;
@@ -52,8 +53,9 @@
         padding: 14px 16px;
         font-family: Arial;
     }
+
     /* Navbar styling */
-    
+
     .navbar a {
         float: left;
         color: white;
@@ -63,11 +65,11 @@
         text-decoration: none;
         justify-content: space-between;
     }
-    
+
     .navbar a:hover {
         color: #B17E7E;
     }
-    
+
     .rightnav {
         margin-left: 85%;
         text-decoration: none;
@@ -75,7 +77,7 @@
         text-align: center;
         font-family: Arial;
     }
-    
+
     .rightnav2 {
         margin-left: 90%;
         text-decoration: none;
@@ -83,14 +85,16 @@
         text-align: center;
         font-family: Arial;
     }
+
     /* DROPDOWN MENU */
-    
+
     .dropdown {
         margin-left: 85%;
         overflow: hidden;
     }
+
     /* DROPDOWN  BUTTON */
-    
+
     .dropdown .dropbtn {
         background-color: inherit;
         font-family: inherit;
@@ -104,8 +108,9 @@
         margin: 0;
         /* Important for vertical align on mobile phones */
     }
+
     /* DROPDOWN CARD (hidden by default) */
-    
+
     .dropdown-content {
         display: none;
         position: absolute;
@@ -114,8 +119,9 @@
         box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         z-index: 1;
     }
+
     /* Links inside the dropdown */
-    
+
     .dropdown-content a {
         float: none;
         color: black;
@@ -124,31 +130,34 @@
         display: block;
         text-align: left;
     }
+
     /* Add a grey background color to dropdown links on hover */
-    
+
     .dropdown-content a:hover {
         background-color: #ddd;
     }
+
     /* Show the dropdown menu on hover */
-    
+
     .dropdown:hover .dropdown-content {
         display: block;
     }
+
     /* Register styling */
-    
+
     .formcontainer {
         background-color: white;
         border-radius: 25px;
         text-align: center;
         margin: 0 auto;
-        height: 65%;
+        height: 68%;
         width: 40%;
     }
-    
+
     .registerTitle {
         padding: 12px 10px;
     }
-    
+
     .errors {
         border-style: solid;
         border-color: red;
@@ -156,62 +165,74 @@
         padding: 10px;
         width: 60%;
     }
-    
+
     input[type=submit] {
         width: 70%;
-        padding: 12px 20px;
+        padding: 10px 20px;
         background-color: #007B75;
         color: white;
         margin: 10px 0;
         box-sizing: border-box;
     }
-    
+
     .input-icons i {
         position: absolute;
     }
-    
+
     .input-icons {
         width: 100%;
         margin-top: 30px;
         margin-bottom: 20px;
     }
-    
+
     .icon {
         padding: 10px;
         color: #007B75;
         min-width: 50px;
         text-align: center;
     }
-    
+
     .input-field {
         width: 70%;
         padding: 10px;
         box-sizing: border-box;
         text-align: center;
     }
+
+    .course,
+    .difficulty {
+        width: 70%;
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
     /* MAIN STYLING */
     /* Recipe Card */
     /* Float four columns side by side */
-    
+
     .column {
         float: left;
         width: 23%;
         padding: 5px 15px;
     }
+
     /* Remove extra left and right margins, due to padding in columns */
-    
+
     .row {
         margin: 0 -5px;
     }
+
     /* Clear floats after the columns */
-    
+
     .row:after {
         content: "";
         display: table;
         clear: both;
     }
+
     /* Style the counter cards */
-    
+
     .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         max-width: 300px;
@@ -220,12 +241,12 @@
         text-align: center;
         font-family: arial;
     }
-    
+
     .card img {
         height: 225px;
         width: 100%;
     }
-    
+
     .card button {
         border: none;
         outline: 0;
@@ -237,42 +258,44 @@
         width: 100%;
         font-size: 18px;
     }
-    
+
     .card button:hover {
         opacity: 0.7;
     }
+
     /* Singe recipe page */
-    
+
     .content {
         text-align: center;
     }
-    
+
     table,
     th,
     td {
         text-align: center;
     }
-    
+
     ul {
         padding-inline-start: 0em;
         font-weight: 400;
         list-style: none;
     }
-    
+
     li {
         text-align: center;
         position: relative;
         cursor: default;
         transition: color 0.4s;
     }
+
     /* Table styling */
-    
+
     table {
         width: 100%;
         margin: 0 auto;
         text-align: center;
     }
-    
+
     th,
     td {
         padding: 8px;
@@ -280,84 +303,109 @@
         text-align: left;
         border-bottom: 1px solid #ddd;
     }
-    
+
     tr h1 {
         text-align: center;
     }
+
+    table li {
+        display: inline-block;
+    }
+
+    .terug-link {
+        padding: 12px 2px;
+    }
+
+
     /* Responsive columns - one column layout (vertical) on small screens */
-    
+
     @media screen and (max-width: 600px) {
         .column {
             width: 100%;
             display: block;
         }
+
         .navbar a {
             font-size: 16px;
         }
+
         .dropdown .dropbtn {
             font-size: 16px;
         }
+
         .dropdown .dropbtn {
             margin-left: 0;
         }
+
         .rightnav {
             margin-left: 50%;
         }
+
         .rightnav2 {
             margin-left: 60%;
         }
     }
-    
+
     @media screen and (min-width:600px) and (max-width: 768px) {
         .column {
             width: 100%;
             display: block;
         }
+
         .dropdown {
             margin-left: 50%;
         }
+
         .rightnav {
             margin-left: 50%;
         }
+
         .rightnav2 {
             margin-left: 60%;
         }
+
         .navbar a {
             font-size: 18px;
         }
+
         .dropdown .dropbtn {
             font-size: 18px;
         }
+
         .rightnav {
             margin-left: 60%;
         }
+
         .rightnav2 {
             margin-left: 65%;
         }
     }
-    
+
     @media screen and (min-width:768px) and (max-width: 992px) {
         .rightnav {
             margin-left: 65%;
         }
+
         .rightnav2 {
             margin-left: 70%;
         }
     }
-    
+
     @media screen and (min-width: 992px) and (max-width: 1200px) {
         .rightnav {
             margin-left: 75%;
         }
+
         .rightnav2 {
             margin-left: 80%;
         }
     }
-    
+
     @media screen and (min-width: 1200px) {
         .rightnav {
             margin-left: 80%;
         }
+
         .rightnav2 {
             margin-left: 85%;
         }

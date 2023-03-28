@@ -16,7 +16,7 @@ if (isset($_SESSION['id'])) {
         } elseif (trim($user['password']) == "") {
             $error = "Vul je wachtwoord in.";
         } else {
-            $result = findUser($user);
+            $result = loginUser($user);
 
             // Email vergelijken
             if ($user['email'] != $result['email']) {
