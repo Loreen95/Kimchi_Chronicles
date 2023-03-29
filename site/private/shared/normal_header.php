@@ -16,38 +16,42 @@ if (!isset($page_title)) {
 </head>
 
 <body>
-    <div class="container">
-        <header class="header">
-            <h1><a href="index.php">Kimchi Chronicles</a></h1>
-        </header>
-        <!-- Top navigation -->
-        <div class="topnav">
-
-            <!-- Centered link -->
-            <div class="topnav-centered">
-                <a href="index.php">Home</a>
-                <a href="recipes.php">Recepten</a>
-                <a href="ingredients.php">Ingredienten</a>
-            </div>
-            <?php if (!isset($_SESSION['id'])) { ?>
-                <ul class="topnav-right">
-                    <li><a href="login.php">Inloggen</a></li>
-                    <li><a href="register.php">Registreren</a></li>
-                </ul>
-            <?php } else { ?>
-                <div class="dropdown topnav-right">
-                    <button class="dropbtn">
-                        <?php echo $_SESSION['user']['first_name']; ?>
-                        <i class="fa fa-caret-down"></i>
-                    </button>
-                    <div class="dropdown-content">
-                        <ul class="dropList">
-                            <li><a href="dashboard.php">Instellingen</a></li>
-                            <li><a href="recipes_add.php">Recepten toevoegen</a></li>
-                            <li><a href="ingredients_add.php">Ingredienten toevoegen</a></li>
-                            <li><a href="logout.php">Uitloggen</a></li>
-                        </ul>
-                    </div>
+    <div class="wrapper">
+        <div class="container">
+            <header class="header">
+                <div class="socials">
+                    <i class="fa-brands fa-facebook hicon"></i>
+                    <i class="fa-brands fa-instagram hicon"></i>
+                    <i class="fa-brands fa-twitter hicon"></i>
+                    <i class="fa-brands fa-pinterest hicon"></i>
+                    <h1><a href="index.php">Kimchi Chronicles</a></h1>
                 </div>
-            <?php } ?>
-        </div>
+            </header>
+            <div class="topnav">
+                <div class="topnav-centered">
+                    <a href="index.php">Home</a>
+                    <a href="recipes.php">Recepten</a>
+                    <a href="ingredients.php">Ingrediënten</a>
+                </div>
+                <?php if (!isset($_SESSION['id'])) { ?>
+                    <ul class="topnav-right">
+                        <li><a href="login.php">Inloggen</a></li>
+                        <li><a href="register.php">Registreren</a></li>
+                    </ul>
+                <?php } else { ?>
+                    <div class="dropdown topnav-right">
+                        <button class="dropbtn">
+                            <?php echo $_SESSION['user']['first_name']; ?>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <ul class="dropList">
+                                <li><a href="dashboard.php">Instellingen</a></li>
+                                <li><a href="recipes_add.php">Recepten toevoegen</a></li>
+                                <li><a href="ingredients_add.php">Ingredienten toevoegen</a></li>
+                                <li><a href="logout.php">Uitloggen</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>

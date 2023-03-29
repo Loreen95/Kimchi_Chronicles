@@ -26,7 +26,7 @@ function recentAdd()
 {
     global $conn;
 
-    $result = $conn->prepare("SELECT * FROM recipes ORDER BY added ASC");
+    $result = $conn->prepare("SELECT * FROM recipes ORDER BY added DESC LIMIT 8");
     $result->execute();
 
     return $result->fetchAll();
@@ -44,9 +44,6 @@ function allIngredients()
 function findRecipe($id)
 {
     global $conn;
-    // GROUP_CONCAT(ingredients.name SEPARATOR ', ') AS ingredient_list,
-    // GROUP_CONCAT(instructions.steps SEPARATOR ', ') AS steps_list
-    // $result = $conn->prepare("SELECT *, author FROM recipe_ingredients AS author_id INNER JOIN recipes on recipe_id = recipes.id INNER JOIN ingredients on ingredient_id = ingredients.id WHERE recipes.id = ?");
     $result = $conn->prepare("SELECT *, recipes.author, CONCAT(users.first_name, ' ', users.last_name) AS author_name,
     GROUP_CONCAT(ingredients.name SEPARATOR ', ') AS ingredient_list
 FROM recipe_ingredients 
@@ -87,8 +84,9 @@ function addInstructions($recipe)
     return $result;
 }
 
-function addIngredient($ingredient){
-    global $conn; 
+function addIngredient($ingredient)
+{
+    global $conn;
 
     $result = $conn->prepare("INSERT INTO ingredients (name) VALUES (:name)");
     $result->bindParam(':name', $ingredient['name']);
