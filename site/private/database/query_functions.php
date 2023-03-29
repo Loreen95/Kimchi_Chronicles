@@ -44,10 +44,13 @@ function allIngredients()
 function findRecipe($id)
 {
     global $conn;
+    // Selecteert alles en combineerd first_name en last_name van users tabel.
+    // Ingredients name en amount worden als groep distinct gecombineerd, zodat ze maar een keer voorkomen bij de weergave.
+    // Inner join de bestaande tabellen om alle nodige gegevens op te kunnen zoeken en weer te geven in de recipe.php pagina.
     $result = $conn->prepare("SELECT *,
     CONCAT(users.first_name, ' ', users.last_name) AS author_name,
     GROUP_CONCAT(DISTINCT CONCAT_WS(' ', ingredients.name, recipe_ingredients.amount) SEPARATOR ', ') AS ingredient_list,
-    GROUP_CONCAT(DISTINCT instructions.steps ORDER BY instructions.steps_desc SEPARATOR '; ') AS instruction_list
+    GROUP_CONCAT(DISTINCT instructions.steps ORDER BY instructions.steps_id SEPARATOR '; ') AS instruction_list
 FROM 
     recipes
     INNER JOIN users ON users.id = recipes.author
@@ -80,26 +83,39 @@ function addUser($user)
     return $result;
 }
 
-function addInstructions($recipe)
+function addInstructions($step)
 {
     global $conn;
 
-    $result = $conn->prepare("INSERT INTO instructions (steps, steps_desc) VALUES (:steps, 'none')");
-    $result->bindParam(':steps', $recipe['steps']);
+    $result = $conn->prepare("INSERT INTO instructions (recipe_id, steps) VALUES (:recipe, :steps)");
+    $result->bindParam(':recipe', $step['recipe_id']);
+    $result->bindParam(':steps', $step['steps']);
 
     $result->execute();
     return $result;
 }
 
-function addIngredient($ingredient)
+function addIngredient($ingredients)
 {
     global $conn;
+    $recipe_id = $conn->lastInsertId();
 
-    $result = $conn->prepare("INSERT INTO ingredients (name) VALUES (:name)");
-    $result->bindParam(':name', $ingredient['name']);
+    foreach ($ingredients as $ingredient) {
+        $name = $ingredient['name'];
+        $result = $conn->prepare("INSERT INTO ingredients (name) VALUES (?)");
+        $result->execute([$name]);
+        
+        $ingredient_id = $conn->lastInsertId();
 
-    $result->execute();
-    return $result;
+        $amount = $ingredient['amount'];
+        $result = $conn->prepare("INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)");
+        $result->execute([$recipe_id, $ingredient_id, $amount]);
+
+        return $result;
+    }
+
+    // Return the recipe ID
+    return $recipe_id;
 }
 
 function addRecipe($recipe)
@@ -139,4 +155,14 @@ function loginUser($user)
 
     $result->execute();
     return $result->fetch(PDO::FETCH_ASSOC);
+}
+
+function totalEntries()
+{
+    global $conn;
+    
+    $result = $conn->prepare("SELECT COUNT(*) AS total_entries FROM recipes");
+    $result->execute();
+
+    return $result->fetchAll();
 }

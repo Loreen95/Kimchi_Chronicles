@@ -92,8 +92,12 @@ h1 {
     float: left;
     font-size: 25px;
     color: #007B75;
-    position: relative;
     padding: 8px 2px;
+    position: relative;
+}
+
+.total {
+    text-align: center !important;
 }
 
 
@@ -198,47 +202,6 @@ img {
 
 .newEntry h1 {
     text-align: center;
-}
-
-form.example input[type=text] {
-    top: -55vh;
-    left: 35%;
-    width: 30%;
-    float: left;
-    padding: 15px;
-    font-size: 17px;
-    position: relative;
-    border-radius: 25px;
-    background: #f1f1f1;
-    border: 1px solid grey;
-}
-
-
-/* Style the submit button */
-
-form.example button {
-    top: -54.5vh;
-    right: 34%;
-    float: right;
-    padding: 10px;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-    border-left: none;
-    position: relative;
-    border-radius: 25px;
-    background: #007B75;
-    border: 1px solid grey;
-}
-
-form.example button:hover {
-    background: #007B75;
-}
-
-form.example::after {
-    content: "";
-    clear: both;
-    display: table;
 }
 
 

@@ -27,7 +27,7 @@ $result = findRecipe($id);
 </div>
 <?php
 if (!$result) { ?>
-    <h1>Dit gerecht bestaat niet!</h1>
+    <h1>De instructies van dit gerecht zijn nog niet gepubliceerd.</h1>
 <?php } ?>
 <div class="secion">
     <?php foreach ($result as $recipe) { ?>
