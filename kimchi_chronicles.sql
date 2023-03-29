@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Gegenereerd op: 27 mrt 2023 om 18:50
+-- Gegenereerd op: 29 mrt 2023 om 15:41
 -- Serverversie: 10.4.28-MariaDB-1:10.4.28+maria~ubu2004
 -- PHP-versie: 8.1.15
 
@@ -46,7 +46,8 @@ INSERT INTO `ingredients` (`id`, `name`) VALUES
 (7, 'Japanse rijst'),
 (8, 'Zout'),
 (9, 'Peper'),
-(10, 'Olijfolie');
+(10, 'Olijfolie'),
+(11, 'rest');
 
 -- --------------------------------------------------------
 
@@ -56,9 +57,17 @@ INSERT INTO `ingredients` (`id`, `name`) VALUES
 
 CREATE TABLE `instructions` (
   `recipe_id` int(11) NOT NULL,
-  `steps` varchar(100) NOT NULL,
+  `steps` text NOT NULL,
   `steps_desc` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `instructions`
+--
+
+INSERT INTO `instructions` (`recipe_id`, `steps`, `steps_desc`) VALUES
+(2, 'Kook de rijst volgens de verpakking. Snij een uitje en hak een teentje knoflook fijn. Ontdoe de zaadjes van de peper en hak ook deze fijn. Fruit dit kort aan in een pan met een klein scheutje zonnebloemolie.', 'Voorbereiding'),
+(2, 'Op het moment dat je ziet dat de uitjes gaan verkleuren, voeg je het rundergehakt toe. Even rul bakken.\r\nZodra het gehakt gaar is, voeg je een eetlepel sojasaus toe. Roer goed door. Voeg nu een eetlepel suiker toe. Roer weer goed door en laat nog voor een minuutje zachtjes bakken.', 'Bakken');
 
 -- --------------------------------------------------------
 
@@ -96,7 +105,7 @@ INSERT INTO `recipes` (`id`, `title`, `author`, `image`, `duration`, `course`, `
 CREATE TABLE `recipe_ingredients` (
   `recipe_id` int(11) NOT NULL,
   `ingredient_id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL
+  `amount` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -104,11 +113,7 @@ CREATE TABLE `recipe_ingredients` (
 --
 
 INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `amount`) VALUES
-(2, 7, 2),
-(4, 1, 2),
-(2, 3, 1),
-(3, 7, 2),
-(5, 2, 1);
+(2, 2, '200 gram');
 
 -- --------------------------------------------------------
 
@@ -177,7 +182,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT voor een tabel `recipes`
