@@ -380,10 +380,12 @@ th h1 {
     text-align: center;
 }
 
-table li {
-    display: inline-block;
-}
-
 .terug-link {
     padding: 12px 2px;
+}
+
+.iList li {
+    width: 40%;
+    margin: 0 auto;
+    border-bottom: 1px solid #ddd;
 }

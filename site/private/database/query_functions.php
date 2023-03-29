@@ -70,8 +70,7 @@ LIMIT 1");
     $result->execute([$id]);
     $result->setFetchMode(PDO::FETCH_ASSOC);
 
-    // var_dump($result->fetchAll());
-    // die;
+    dd($result->fetchAll());
     return $result->fetchAll();
 }
 

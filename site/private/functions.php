@@ -17,3 +17,13 @@ function redirect_to($location)
     header("Location: " . $location);
     exit();
 }
+
+
+function dd($var){
+    echo "<pre>";
+    var_dump($var);
+
+    echo "</pre>";
+
+    die;
+}

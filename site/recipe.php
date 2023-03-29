@@ -35,27 +35,28 @@ $result = findRecipe($id);
             <img src="public/images/<?php echo $recipe['image']; ?>" style="height: 500px; width: 40%" />
             <h2>Ingrediënten:</h2>
             <ul class="iList">
+                <!-- Explode de array zodat alles onder elkaar komt te staan -->
                 <?php $ingredient = explode(',', $recipe['ingredient_list']);
-                // var_dump($ingredient);
-                // die;
                 foreach ($ingredient as $food =>  $ingredient) {
                 ?>
-                    <li><?php echo $ingredient; ?></li>
-                    <?php } ?>
+                    <li><?php echo $recipe['amount'] . " " . $ingredient; ?></li>
+                <?php }
+                dd($recipe) ?>
             </ul>
-        <dl>
-            <dd>
-                <?php $lijst = explode(';', $recipe['instruction_list']);
-                foreach ($lijst as $stp =>  $instruction) {
-                ?>
-            <dt>
-                <h2><?php echo "stap " . $stp + 1   ?>:</h2>
-            </dt>
-            <dd><?php echo $instruction; ?></dd>
-        <?php } ?>
+            <dl>
+                <dd>
+                    <!-- Explode de array zodat alles onder elkaar komt te staan -->
+                    <?php $lijst = explode(';', $recipe['instruction_list']);
+                    foreach ($lijst as $stp =>  $instruction) {
+                    ?>
+                <dt>
+                    <h2 class="step"><?php echo "Stap " . $stp + 1   ?>:</h2>
+                </dt>
+                <dd><?php echo $instruction; ?></dd>
+            <?php } ?>
 
-        </dd>
-        </dl>
+            </dd>
+            </dl>
         </div>
     <?php }
     ?>
