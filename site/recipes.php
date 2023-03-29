@@ -10,18 +10,18 @@ $result = allRecipes();
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
 <h1>Receptenlijst</h1>
-<?php 
-if (!$result){?>
+<?php
+if (!$result) { ?>
     <h1>Er zijn nog geen gerechten toegevoegd</h1>
 <?php } ?>
 
 <div class="row">
     <?php foreach ($result as $recipe) { ?>
         <div class="column">
-            <div class="card">
-                <h2><?php echo $recipe['title']; ?> </h2>
-                <img src="public/images/<?php echo $recipe['image']; ?>" />
-                <a href="<?php echo 'recipe.php?id=' . $recipe['id']; ?> "><button>Lees recept</button></a>
+            <div class="card"><a href="<?php echo 'recipe.php?id=' . $recipe['id']; ?> ">
+                    <img src="public/images/<?php echo $recipe['image']; ?>" />
+                    <h2><?php echo $recipe['title']; ?> </h2>
+                </a>
             </div>
         </div>
     <?php } ?>

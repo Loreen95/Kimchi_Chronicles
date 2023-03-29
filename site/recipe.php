@@ -15,11 +15,12 @@ $result = findRecipe($id);
 <div id="content">
     <?php
     foreach ($result as $recipe) {
-        if ($recipe['author'] == $_SESSION['id']) {
+        if (!isset($_SESSION['id'])) {
     ?>
             <a class="terug-link" href="index.php">&laquo; Terug</a>
+        <?php } elseif ($recipe['author'] == $_SESSION['id']) { ?>
+            <a class="terug-link" href="index.php">&laquo; Terug</a>
             <a href="recipe_edit.php?id=<?php echo $id; ?>">Aanpassen</a>
-        <?php } else { ?>
             <a class="terug-link" href="index.php">&laquo; Terug</a>
     <?php }
     } ?>
@@ -27,17 +28,20 @@ $result = findRecipe($id);
 
 <div class="secion">
     <?php foreach ($result as $recipe) { ?>
-        <h1><?php echo $recipe['title']; ?></h1>
+        <h1 class="rTitle"><?php echo $recipe['title']; ?></h1>
         <h3><?php echo $recipe['author_name']; ?></h3>
 
         <div class="article">
             <img src="public/images/<?php echo $recipe['image']; ?>" style="height: 500px; width: 40%" />
-            <h2>Ingredienten:</h2>
-            <ul>
+            <h2>Ingrediënten:</h2>
+            <ul class="iList">
+                <li><?php echo $recipe['amount']; ?></li>
                 <li><?php echo $recipe['ingredient_list']; ?></li>
             </ul>
             <dl>
-                <dt><?php echo $recipe['steps_desc']; ?>:</dt>
+                <dt>
+                    <h2><?php echo $recipe['steps_desc']; ?>:</h2>
+                </dt>
                 <dd><?php echo $recipe['steps']; ?></dd>
             </dl>
         </div>

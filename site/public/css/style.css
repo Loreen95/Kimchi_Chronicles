@@ -18,6 +18,12 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+h1 {
+    left: 0;
+    right: 0;
+    position: relative;
+}
+
 /* Grid Layout */
 .wrapper {
     overflow: auto;
@@ -57,20 +63,21 @@ body {
     text-align: center;
     padding: 14px 16px;
     font-family: Arial;
+    border-top: solid black 1px;
 }
 
 /* Header */
 h1 {
-    text-align: center !important;
-    right: 3%;
+    left: -2.9%;
     position: relative;
+    text-align: center !important;
 }
 
 .hicon {
     left: 5%;
     float: left;
     font-size: 25px;
-    color: #B17E7E;
+    color: #007B75;
     position: relative;
     padding: 8px 2px;
 }
@@ -96,7 +103,7 @@ h1 {
 }
 
 .topnav-centered a {
-    left: 41%;
+    left: 36%;
     right: 50%;
     float: none;
     position: relative;
@@ -171,6 +178,10 @@ img {
     margin-right: auto;
 }
 
+.newEntry h1 {
+    text-align: center;
+}
+
 form.example input[type=text] {
     top: -55vh;
     left: 35%;
@@ -204,7 +215,6 @@ form.example button:hover {
     background: #007B75;
 }
 
-/* Clear floats */
 form.example::after {
     content: "";
     clear: both;
@@ -310,6 +320,66 @@ input[type=submit] {
     background-color: #000;
 }
 
-.card button:hover {
+.card :hover {
     opacity: 0.7;
+}
+
+.rTitle {
+    left: 0%;
+    right: 50%;
+    position: relative;
+}
+
+/* Single-recept styling */
+.content {
+    text-align: center;
+}
+
+table,
+th,
+td {
+    text-align: center;
+}
+
+ul {
+    padding-inline-start: 0em;
+    font-weight: 400;
+    list-style: none;
+}
+
+li {
+    text-align: center;
+    position: relative;
+    cursor: default;
+    transition: color 0.4s;
+}
+
+/* Table styling */
+
+table {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 8px;
+    width: 25%;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th h1 {
+    right: 0;
+    left: -10px;
+    text-align: center;
+}
+
+table li {
+    display: inline-block;
+}
+
+.terug-link {
+    padding: 12px 2px;
 }
