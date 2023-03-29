@@ -14,18 +14,21 @@ $result = findRecipe($id);
 
 <div id="content">
     <?php
-    foreach ($result as $recipe) {
-        if (!isset($_SESSION['id'])) {
+    if (!isset($_SESSION['id'])) {
     ?>
-            <a class="terug-link" href="index.php">&laquo; Terug</a>
-        <?php } elseif ($recipe['author'] == $_SESSION['id']) { ?>
+        <a class="terug-link" href="index.php">&laquo; Terug</a>
+    <?php } ?>
+    <?php foreach ($result as $recipe) {
+        if ($recipe['author'] == $_SESSION['id']) { ?>
             <a class="terug-link" href="index.php">&laquo; Terug</a>
             <a href="recipe_edit.php?id=<?php echo $id; ?>">Aanpassen</a>
-            <a class="terug-link" href="index.php">&laquo; Terug</a>
     <?php }
     } ?>
 </div>
-
+<?php
+if (!$result) { ?>
+    <h1>Dit gerecht bestaat niet!</h1>
+<?php } ?>
 <div class="secion">
     <?php foreach ($result as $recipe) { ?>
         <h1 class="rTitle"><?php echo $recipe['title']; ?></h1>
@@ -37,24 +40,23 @@ $result = findRecipe($id);
             <ul class="iList">
                 <!-- Explode de array zodat alles onder elkaar komt te staan -->
                 <?php $ingredient = explode(',', $recipe['ingredient_list']);
-                foreach ($ingredient as $food =>  $ingredient) {
+                foreach ($ingredient as $ingredient) {
                 ?>
-                    <li><?php echo $recipe['amount'] . " " . $ingredient; ?></li>
-                <?php }
-                dd($recipe) ?>
+                    <li><?php echo $ingredient; ?></li>
+                <?php } ?>
             </ul>
             <dl>
+                <dt><h2>Bereiding:</h2></dt>
                 <dd>
                     <!-- Explode de array zodat alles onder elkaar komt te staan -->
                     <?php $lijst = explode(';', $recipe['instruction_list']);
                     foreach ($lijst as $stp =>  $instruction) {
                     ?>
                 <dt>
-                    <h2 class="step"><?php echo "Stap " . $stp + 1   ?>:</h2>
+                    <h3 class="step"><?php echo "Stap " . $stp + 1   ?>:</h3>
                 </dt>
                 <dd><?php echo $instruction; ?></dd>
             <?php } ?>
-
             </dd>
             </dl>
         </div>

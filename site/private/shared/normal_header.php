@@ -39,7 +39,7 @@ if (!isset($page_title)) {
                         <li><a href="register.php">Registreren</a></li>
                     </ul>
                 <?php } else { ?>
-                    <div class="dropdown topnav-right">
+                    <div class="dropdown">
                         <button class="dropbtn">
                             <?php echo $_SESSION['user']['first_name']; ?>
                             <i class="fa fa-caret-down"></i>
