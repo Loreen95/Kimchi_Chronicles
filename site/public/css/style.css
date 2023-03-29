@@ -117,7 +117,7 @@ h1 {
 }
 
 .topnav-right ul,
-li {
+.topnav-right li {
     display: inline;
     list-style: none;
 }
@@ -352,6 +352,10 @@ li {
     position: relative;
     cursor: default;
     transition: color 0.4s;
+}
+
+.terug-link:hover {
+    color: #007B75;
 }
 
 /* Table styling */

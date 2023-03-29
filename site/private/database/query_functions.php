@@ -44,18 +44,34 @@ function allIngredients()
 function findRecipe($id)
 {
     global $conn;
-    $result = $conn->prepare("SELECT *, recipes.author, CONCAT(users.first_name, ' ', users.last_name) AS author_name,
-    GROUP_CONCAT(ingredients.name SEPARATOR ', ') AS ingredient_list
-FROM recipe_ingredients 
-INNER JOIN recipes ON recipe_id = recipes.id 
-INNER JOIN ingredients ON ingredient_id = ingredients.id 
-INNER JOIN users ON recipes.author = users.id 
-INNER JOIN instructions ON recipes.id = instructions.recipe_id
-WHERE recipes.id = ?
-GROUP BY recipes.id; LIMIT 1;");
+    $result = $conn->prepare("SELECT *,
+    recipes.author, CONCAT(users.first_name, ' ', users.last_name) AS author_name,
+    GROUP_CONCAT(DISTINCT ingredients.name SEPARATOR ', ') AS ingredient_list,
+    GROUP_CONCAT(DISTINCT instructions.steps ORDER BY instructions.steps_desc SEPARATOR ';') AS instruction_list
+FROM 
+    recipe_ingredients 
+    INNER JOIN recipes ON recipe_id = recipes.id 
+    INNER JOIN users ON recipes.author = users.id 
+    INNER JOIN (
+        SELECT DISTINCT 
+            instructions.recipe_id,
+            instructions.steps_desc,
+            instructions.steps
+        FROM 
+            instructions
+    ) AS instructions ON recipes.id = instructions.recipe_id
+    INNER JOIN ingredients ON ingredient_id = ingredients.id 
+WHERE 
+    recipes.id = ?
+GROUP BY 
+    recipes.id 
+LIMIT 1");
+
     $result->execute([$id]);
     $result->setFetchMode(PDO::FETCH_ASSOC);
 
+    // var_dump($result->fetchAll());
+    // die;
     return $result->fetchAll();
 }
 
