@@ -1,18 +1,8 @@
 /* Color palette */
-
-
 /* - Aubergine (#3D2F5F) */
-
-
 /* - Oud roze (#B17E7E) */
-
-
 /* - Blauwgroen (#007B75) */
-
-
 /* - Cremegeel (#F2E8C4) */
-
-
 /* Generic styling */
 
 a {
@@ -28,9 +18,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
 /* Grid Layout */
-
 .container {
     height: 100vh;
     display: grid;
@@ -68,16 +56,13 @@ body {
     font-family: Arial;
 }
 
-
 /* Header */
-
 h1 {
     text-align: center;
 }
 
 
 /* Navigation */
-
 .topnav {
     top: -15%;
     grid-area: navbar;
@@ -105,20 +90,29 @@ h1 {
 }
 
 .topnav-right {
+    top: -2.1vh;
     float: right;
+    margin-right: 6%;
+    position: relative;
+}
+
+.topnav-right ul,
+li {
+    display: inline;
+    list-style: none;
 }
 
 .dropdown {
     overflow: hidden;
-    margin-right: 3.8%;
+    margin-left: 50%;
 }
 
 .dropdown .dropbtn {
     margin: 0;
     border: none;
     outline: none;
+    padding: 14px 16px;
     font-size: 20px;
-    padding: 14px 18.3px;
     font-family: inherit;
     background-color: inherit;
 }
@@ -140,7 +134,7 @@ h1 {
 .dropdown-content a {
     float: none;
     color: black;
-    padding: 12px 16px;
+    /* padding: 12px 16px; */
     text-decoration: none;
     display: block;
     text-align: left;
@@ -156,28 +150,24 @@ h1 {
 
 
 /* Home Page styling */
-
-.mainImg {}
-
+img {
+    width: 45%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* Recipe Card */
-
 .column {
     float: left;
     width: 25%;
 }
-
-
-/* Clear floats after the columns */
 
 .row:after {
     content: "";
     display: table;
     clear: both;
 }
-
-
-/* Style the counter cards */
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);

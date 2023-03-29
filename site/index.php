@@ -9,6 +9,10 @@
 
 <img class="mainImg" src="public/images/background-image.jpg">
 
+<div class="newEntry">
+    <h1>Nieuwste Recepten</h1>
+</div>
+
 
 <?php include(SHARED_PATH . '/main_end.php'); ?>
 

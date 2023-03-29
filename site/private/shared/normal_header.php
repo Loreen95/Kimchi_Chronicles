@@ -30,7 +30,7 @@ if (!isset($page_title)) {
                 <a href="ingredients.php">Ingredienten</a>
             </div>
             <?php if (!isset($_SESSION['id'])) { ?>
-                <ul class="rightnav">
+                <ul class="topnav-right">
                     <li><a href="login.php">Inloggen</a></li>
                     <li><a href="register.php">Registreren</a></li>
                 </ul>
@@ -51,4 +51,3 @@ if (!isset($page_title)) {
                 </div>
             <?php } ?>
         </div>
-        
