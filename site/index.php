@@ -15,15 +15,20 @@ $result = recentAdd(); ?>
 <div class="newEntry">
     <h1 class="rTitle">Nieuwste Recepten</h1>
     <div class="row">
-        <?php foreach ($result as $recipe) { ?>
+        <?php foreach ($result as $recipe) {
+        ?>
             <div class="column">
-                <div class="card"><a href="<?php echo 'recipe.php?id=' . $recipe['id']; ?> ">
-                        <img src="public/images/<?php echo $recipe['image']; ?>" />
-                        <h2><?php echo $recipe['title']; ?> </h2>
+                <div class="card"><a href="<?php echo 'recipe.php?id=' . $recipe['id'];
+                                            ?> ">
+                        <img src="public/images/<?php echo $recipe['image'];
+                                                ?>" />
+                        <h2><?php echo $recipe['title'];
+                            ?> </h2>
                     </a>
                 </div>
             </div>
-        <?php } ?>
+        <?php }
+        ?>
     </div>
 </div>
 

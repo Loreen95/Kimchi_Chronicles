@@ -4,16 +4,10 @@
 $id = $_SESSION['id'];
 
 if (is_post_request()) {
-    $recipeName = $_POST['title'];
-    $image = $_POST['image-upload'];
-    $duration = $_POST['duration'];
-    $course = $_POST['course'];
-    $difficulty = $_POST['difficulty'];
-    $ingredients = $_POST['ingredients'];
-    $amounts = $_POST['amounts'];
-    $steps = $_POST['steps'];
 
-    $result = addRecipe($recipeName, $image, $duration, $course, $difficulty, $ingredients, $amounts, $steps);
+
+
+    $result = addRecipe($recipe);
 }
 ?>
 
@@ -54,59 +48,37 @@ if (is_post_request()) {
 
         <div class="input-icons">
             <label for="input3">Ingrediënt:</label>
-            <input class="input-field" type="text" id="ingredient-1" name="ingredients[]" placeholder="Bloem">
+            <input class="input-field" type="text" id="input3" name="ingredient[0][name]" placeholder="Bloem">
         </div>
 
         <div class="input-icons">
             <label for="input4">Hoeveelheid:</label>
-            <input class="input-field" type="text" id="amount-1" name="amounts[]" placeholder="250 gram">
+            <input class="input-field" type="text" id="input4" name="ingredient[0][amount]" placeholder="250 gram">
         </div>
 
         <div class="input-icons">
             <label for="input5">Ingrediënt 2:</label>
-            <input class="input-field" type="text" id="ingredient-2" name="ingredients[]" placeholder="Bloem">
+            <input class="input-field" type="text" id="input5" name="ingredient[1][name]" placeholder="Bloem">
         </div>
 
         <div class="input-icons">
             <label for="input6">Hoeveelheid:</label>
-            <input class="input-field" type="text" id="amount-2" name="amounts[]" placeholder="250 gram">
+            <input class="input-field" type="text" id="input6" name="ingredient[1][amount]" placeholder="250 gram">
         </div>
 
         <div class="input-icons">
             <label for="input7">Ingrediënt 3:</label>
-            <input class="input-field" type="text" id="ingredient-3" name="ingredients[]" placeholder="Bloem">
+            <input class="input-field" type="text" id="input7" name="ingredient[2][name]" placeholder="Bloem">
         </div>
 
         <div class="input-icons">
             <label for="input8">Hoeveelheid:</label>
-            <input class="input-field" type="text" id="amount-3" name="amounts[]" placeholder="250 gram">
+            <input class="input-field" type="text" id="input8" name="ingredient[2][amount]" placeholder="250 gram">
         </div>
-
-        <div class="input-icons">
-            <label for="input3">Instructie:</label>
-            <textarea class="input-field" type="text" id="steps-1" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
-        </div>
-
-        <div class="input-icons">
-            <label for="input3">Instructie 1:</label>
-            <textarea class="input-field" type="text" id="steps-2" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
-        </div>
-
-        <div class="input-icons">
-            <label for="input3">Instructie 2:</label>
-            <textarea class="input-field" type="text" id="steps-3" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
-        </div>
-        <div class="input-icons">
-            <label for="input3">Instructie 3:</label>
-            <textarea class="input-field" type="text" id="steps-4" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
-        </div>
-
-
 
         <div class="input-icons">
             <label for="select1">Menugang:</label>
-            <select class="course" name="course">
-                <option value="" selected disabled>Kies de menugang</option>
+            <select class="course" name="recipe" required>
                 <option value="starter">Voorgerecht</option>
                 <option value="main">Hoofdgerecht</option>
                 <option value="dessert">Nagerecht</option>
@@ -115,8 +87,7 @@ if (is_post_request()) {
 
         <div class="input-icons">
             <label for="select2">Moeilijkheid:</label>
-            <select class="input-field" name="difficulty">
-                <option value="" selected disabled>Kies de Moeilijkheid</option>
+            <select class="input-field" id="select2" name="select2">
                 <option value="easy">Makkelijk</option>
                 <option value="medium">Gemiddeld</option>
                 <option value="hard">Moeilijk</option>
