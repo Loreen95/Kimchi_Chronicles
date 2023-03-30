@@ -119,6 +119,10 @@ ul {
     margin: 0 10px;
 }
 
+.navbar a:hover {
+    color: #007B75;
+}
+
 
 /* Formulieren */
 
@@ -160,7 +164,7 @@ input[type=submit] {
 }
 
 .icon {
-    padding: 10px;
+    padding: 5px;
     color: #007B75;
     min-width: 50px;
     text-align: center;
@@ -168,7 +172,7 @@ input[type=submit] {
 
 .input-field {
     width: 70%;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     box-sizing: border-box;
 }
@@ -176,7 +180,7 @@ input[type=submit] {
 .course,
 .difficulty {
     width: 70%;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
     box-sizing: border-box;
 }
@@ -184,6 +188,11 @@ input[type=submit] {
 #image-preview {
     height: 400px;
     width: 500px;
+}
+
+#image {
+    position: relative;
+    left: 25%;
 }
 
 

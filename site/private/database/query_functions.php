@@ -72,7 +72,7 @@ LIMIT 1");
     return $result->fetchAll();
 }
 
-function addUser($user)
+function addUser($user, $hashed_password)
 {
     global $conn;
 
@@ -80,22 +80,20 @@ function addUser($user)
     $result->bindParam(':first_name', $user['firstname']);
     $result->bindParam(':last_name', $user['lastname']);
     $result->bindParam(':email', $user['email']);
-    $result->bindParam(':password', $user['password']);
-
+    $result->bindParam(':password', $hashed_password);
     $result->execute();
     return $result;
 }
 
-function addInstructions($recipe)
+
+function loginUser($email)
 {
     global $conn;
 
-    $result = $conn->prepare("INSERT INTO instructions (recipe_id, steps, steps_desc) VALUES (:recipe_id, :steps, 'none')");
-    $result->bindParam(':recipe_id', $recipe['recipe_id']);
-    $result->bindParam(':steps', $recipe['steps']);
-
+    $result = $conn->prepare("SELECT * FROM users WHERE email = :email");
+    $result->bindParam(':email', $email);
     $result->execute();
-    return $result;
+    return $result->fetch(PDO::FETCH_ASSOC);
 }
 
 function addRecipe($recipeName, $image, $duration, $course, $difficulty, $ingredients, $amounts, $steps)
@@ -175,17 +173,6 @@ function findUserByID($id)
     $result->setFetchMode(PDO::FETCH_ASSOC);
 
     return $result->fetchAll();
-}
-
-function loginUser($user)
-{
-    global $conn;
-
-    $result = $conn->prepare("SELECT * FROM users WHERE email = :email");
-    $result->bindParam(':email', $user['email']);
-
-    $result->execute();
-    return $result->fetch(PDO::FETCH_ASSOC);
 }
 
 function totalEntries()

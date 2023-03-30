@@ -10,6 +10,7 @@ if (is_post_request()) {
     $user['email'] = $_POST['email'] ?? '';
     $user['password'] = $_POST['password'] ?? '';
     $user['password2'] = $_POST['password2'] ?? '';
+    $hashed_password = password_hash($user['password'], PASSWORD_DEFAULT);
 
     if (trim($user['firstname']) == "" && trim($user['lastname']) == "" && trim($user['email']) == "" && trim($user['password']) == "" && trim($user['password2']) == "") {
         $error = "Vul alle velden in.";
@@ -29,7 +30,7 @@ if (is_post_request()) {
         $result = findUserByID($user);
 
         if ($user['email'] != $result['email']) {
-            $result = addUser($user);
+            $result = addUser($user, $hashed_password);
             redirect_to("index.php");
         } else {
             $error = "Dit emailadres bestaat al. <a href='login.php'>inloggen</a>?";

@@ -36,75 +36,75 @@ if (is_post_request()) {
     <?php } ?>
 
     <form method="post">
-        <div class="input-icons">
+        <div class="input-icons" id="image">
             <label for="image-upload">Upload Foto:</label>
             <input class="input-field" type="file" id="image-upload" name="image-upload" accept="image/*">
             <img id="image-preview" src="#" alt="Image Preview" style="display: none;">
         </div>
 
         <div class="input-icons">
-            <label for="input1">Naam gerecht:</label>
+            <i class="fa-solid fa-bowl-food icon"></i>
             <input class="input-field" type="text" id="input1" name="title" placeholder="Kimchi Fried Rice" required>
         </div>
 
         <div class="input-icons">
-            <label for="input2">Bereidingstijd: </label>
+            <i class="fa-solid fa-clock icon"></i>
             <input class="input-field" type="text" id="input2" name="duration" placeholder="HH:MM:SS" required>
         </div>
 
         <div class="input-icons">
-            <label for="input3">Ingrediënt:</label>
-            <input class="input-field" type="text" id="ingredient-1" name="ingredients[]" placeholder="Bloem">
+            <i class="fa-solid fa-bowl-food icon"></i>
+            <input class="input-field" type="text" id="ingredient-1" name="ingredients[]" placeholder="Ingrediënt">
         </div>
 
         <div class="input-icons">
-            <label for="input4">Hoeveelheid:</label>
-            <input class="input-field" type="text" id="amount-1" name="amounts[]" placeholder="250 gram">
+            <i class="fa-solid fa-bowl-food icon"></i>
+            <input class="input-field" type="text" id="amount-1" name="amounts[]" placeholder="Hoeveelheid">
         </div>
 
         <div class="input-icons">
-            <label for="input5">Ingrediënt 2:</label>
-            <input class="input-field" type="text" id="ingredient-2" name="ingredients[]" placeholder="Bloem">
+            <i class="fa-solid fa-bowl-food icon"></i>
+            <input class="input-field" type="text" id="ingredient-2" name="ingredients[]" placeholder="Ingrediënt">
         </div>
 
         <div class="input-icons">
-            <label for="input6">Hoeveelheid:</label>
-            <input class="input-field" type="text" id="amount-2" name="amounts[]" placeholder="250 gram">
+            <i class="fa-solid fa-bowl-food icon"></i>
+            <input class="input-field" type="text" id="amount-2" name="amounts[]" placeholder="Hoeveelheid">
         </div>
 
         <div class="input-icons">
-            <label for="input7">Ingrediënt 3:</label>
-            <input class="input-field" type="text" id="ingredient-3" name="ingredients[]" placeholder="Bloem">
+            <i class="fa-solid fa-bowl-food icon"></i>
+            <input class="input-field" type="text" id="ingredient-3" name="ingredients[]" placeholder="Ingrediënt">
         </div>
 
         <div class="input-icons">
-            <label for="input8">Hoeveelheid:</label>
-            <input class="input-field" type="text" id="amount-3" name="amounts[]" placeholder="250 gram">
+            <i class="fa-solid fa-bowl-food icon"></i>
+            <input class="input-field" type="text" id="amount-3" name="amounts[]" placeholder="Hoeveelheid">
         </div>
 
         <div class="input-icons">
-            <label for="input3">Instructie:</label>
+            <i class="fa-solid fa-book icon"></i>
             <textarea class="input-field" type="text" id="steps-1" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
         </div>
 
         <div class="input-icons">
-            <label for="input3">Instructie 1:</label>
+            <i class="fa-solid fa-book icon"></i>
             <textarea class="input-field" type="text" id="steps-2" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
         </div>
 
         <div class="input-icons">
-            <label for="input3">Instructie 2:</label>
+            <i class="fa-solid fa-book icon"></i>
             <textarea class="input-field" type="text" id="steps-3" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
         </div>
         <div class="input-icons">
-            <label for="input3">Instructie 3:</label>
+            <i class="fa-solid fa-book icon"></i>
             <textarea class="input-field" type="text" id="steps-4" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
         </div>
 
 
 
         <div class="input-icons">
-            <label for="select1">Menugang:</label>
+            <i class="fa-solid fa-turn-up icon"></i>
             <select class="course" name="course">
                 <option value="" selected disabled>Kies de menugang</option>
                 <option value="starter">Voorgerecht</option>
@@ -114,7 +114,7 @@ if (is_post_request()) {
         </div>
 
         <div class="input-icons">
-            <label for="select2">Moeilijkheid:</label>
+            <i class="fa-solid fa-turn-up icon"></i>
             <select class="input-field" name="difficulty">
                 <option value="" selected disabled>Kies de Moeilijkheid</option>
                 <option value="easy">Makkelijk</option>

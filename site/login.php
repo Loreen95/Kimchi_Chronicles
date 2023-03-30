@@ -5,27 +5,28 @@ if (isset($_SESSION['id'])) {
     redirect_to("index.php");
 } else {
     if (is_post_request()) {
-        $user = [];
-        $user['email'] = $_POST['email'];
-        $user['password'] = $_POST['password'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $hashed_password_from_database = '...';
 
-        if (trim($user['email']) == "" && trim($user['password']) == "") {
+        if (trim($email) == "" && (trim($password) == "")) {
             $error = "Vul alle velden in.";
-        } elseif (trim($user['email']) == "") {
+        } elseif (trim($email) == "") {
             $error = "Vul je e-mail adres in.";
-        } elseif (trim($user['password']) == "") {
+        } elseif (trim($password) == "") {
             $error = "Vul je wachtwoord in.";
         } else {
-            $result = loginUser($user);
+            $result = loginUser($email);
 
             // Email vergelijken
-            if ($user['email'] != $result['email']) {
+            if ($email != $result['email']) {
                 $error = "Het emailadres is niet geldig.";
                 // Wachtwoord vergelijken
-            } else if ($user['password'] != $result['password']) {
-                $error = "Het wachtwoord is onjuist.";
+            } else if (password_verify($password,
+                $hashed_password_from_database
+            )) {
+                // Password is correct
             } else {
-                // Gebruiker doorsturen
                 $_SESSION['id'] = $result['id'];
                 $_SESSION['user'] = $result;
                 redirect_to("index.php");

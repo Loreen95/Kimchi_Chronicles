@@ -1,7 +1,9 @@
 <?php require_once('private/initialize.php'); ?>
 <?php $page_title = "Gebruikers dashboard";
 
-$result = recentAdd();
+$id = $_SESSION['id'];
+
+$result = findUserByID($id);
 ?>
 
 <!-- Header -->
