@@ -146,3 +146,14 @@ function loginUser($user)
     $result->execute();
     return $result->fetch(PDO::FETCH_ASSOC);
 }
+
+function totalEntries()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT COUNT(*) AS total_entries FROM recipes");
+    $result->execute();
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}

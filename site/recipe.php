@@ -19,22 +19,14 @@ $result = findRecipe($id);
         <a class="terug-link" href="index.php">&laquo; Terug</a>
     <?php } ?>
     <?php foreach ($result as $recipe) {
-        if ($recipe['author'] == $_SESSION['id']) { ?>
+        if (isset($_SESSION['id']) && $recipe['author'] == $_SESSION['id']) { ?>
             <a class="terug-link" href="index.php">&laquo; Terug</a>
             <a href="recipe_edit.php?id=<?php echo $id; ?>">Aanpassen</a>
     <?php }
     } ?>
 </div>
-<<<<<<< HEAD
 
 <div class="section">
-=======
-<?php
-if (!$result) { ?>
-    <h1>De instructies van dit gerecht zijn nog niet gepubliceerd.</h1>
-<?php } ?>
-<div class="secion">
->>>>>>> 10fd28760fd2d8d05f826a462b187b35134d523b
     <?php foreach ($result as $recipe) { ?>
         <h1 class="rTitle"><?php echo $recipe['title']; ?></h1>
         <h3><?php echo $recipe['author_name']; ?></h3>
@@ -47,15 +39,13 @@ if (!$result) { ?>
                 <?php $ingredient = explode(',', $recipe['ingredient_list']);
                 foreach ($ingredient as $ingredient) {
                 ?>
-<<<<<<< HEAD
                     <li><?php echo $recipe['amount'] . " " . $ingredient; ?></li>
-=======
-                    <li><?php echo $ingredient; ?></li>
->>>>>>> 10fd28760fd2d8d05f826a462b187b35134d523b
                 <?php } ?>
             </ul>
             <dl>
-                <dt><h2>Bereiding:</h2></dt>
+                <dt>
+                    <h2>Bereiding:</h2>
+                </dt>
                 <dd>
                     <!-- Explode de array zodat alles onder elkaar komt te staan -->
                     <?php $lijst = explode(';', $recipe['instruction_list']);
