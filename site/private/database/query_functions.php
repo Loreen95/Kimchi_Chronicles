@@ -46,7 +46,7 @@ function findRecipe($id)
     global $conn;
     $result = $conn->prepare("SELECT *,
     recipes.author, CONCAT(users.first_name, ' ', users.last_name) AS author_name,
-    GROUP_CONCAT(DISTINCT ingredients.name SEPARATOR ', ') AS ingredient_list,
+    GROUP_CONCAT(DISTINCT recipe_ingredients.amount, ' ', ingredients.name SEPARATOR ', ') AS ingredient_list,
     GROUP_CONCAT(DISTINCT instructions.steps ORDER BY instructions.steps_desc SEPARATOR ';') AS instruction_list
 FROM 
     recipe_ingredients 
@@ -90,21 +90,34 @@ function addInstructions($recipe)
 {
     global $conn;
 
-    $result = $conn->prepare("INSERT INTO instructions (steps, steps_desc) VALUES (:steps, 'none')");
+    $result = $conn->prepare("INSERT INTO instructions (recipe_id, steps, steps_desc) VALUES (:recipe_id, :steps, 'none')");
+    $result->bindParam(':recipe_id', $recipe['recipe_id']);
     $result->bindParam(':steps', $recipe['steps']);
 
     $result->execute();
     return $result;
 }
 
-function addIngredient($ingredient)
+function addIngredient($ingredientName, $recipeId, $ingredientAmount)
 {
     global $conn;
 
-    $result = $conn->prepare("INSERT INTO ingredients (name) VALUES (:name)");
-    $result->bindParam(':name', $ingredient['name']);
+    $result = $conn->prepare("SELECT id FROM ingredients WHERE name = ?");
+    $result->execute([$ingredientName]);
+    $ingredientRow = $result->fetch(PDO::FETCH_ASSOC);
+    if (!$ingredientRow) {
+        $result = $conn->prepare("INSERT INTO ingredients (name) VALUES (?)");
+        $result->execute([$ingredientName]);
 
-    $result->execute();
+        // get the ID of the newly inserted ingredient
+        $ingredientId = $conn->lastInsertId();
+
+        // insert the ingredient and amount into the recipe_instructions table
+        $result = $conn->prepare("INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)");
+        $result->execute([$recipeId, $ingredientId, $ingredientAmount]);
+
+        $result->execute();
+    }
     return $result;
 }
 

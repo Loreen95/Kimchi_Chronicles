@@ -1,7 +1,6 @@
 <?php require_once('private/initialize.php'); ?>
-<?php $page_title = "Recept aanpassen";
+<?php $page_title = "Specials";
 
-$result = recentAdd();
 ?>
 
 <!-- Header -->
@@ -9,7 +8,6 @@ $result = recentAdd();
 
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
-
 
 <?php include(SHARED_PATH . '/main_end.php'); ?>
 

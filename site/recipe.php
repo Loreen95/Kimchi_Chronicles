@@ -13,17 +13,15 @@ $result = findRecipe($id);
 <?php include(SHARED_PATH . '/main_start.php'); ?>
 
 <div id="content">
-    <?php
-    if (!isset($_SESSION['id'])) {
-    ?>
-        <a class="terug-link" href="index.php">&laquo; Terug</a>
-    <?php } ?>
     <?php foreach ($result as $recipe) {
-        if (isset($_SESSION['id']) && $recipe['author'] == $_SESSION['id']) { ?>
+        if ($recipe['author'] == $_SESSION['id'] || $_SESSION['user']['role'] == "administrator") { ?>
             <a class="terug-link" href="index.php">&laquo; Terug</a>
             <a href="recipe_edit.php?id=<?php echo $id; ?>">Aanpassen</a>
+        <?php } else { ?>
+            <a class="terug-link" href="index.php">&laquo; Terug</a>
     <?php }
     } ?>
+
 </div>
 
 <div class="section">
@@ -39,7 +37,7 @@ $result = findRecipe($id);
                 <?php $ingredient = explode(',', $recipe['ingredient_list']);
                 foreach ($ingredient as $ingredient) {
                 ?>
-                    <li><?php echo $recipe['amount'] . " " . $ingredient; ?></li>
+                    <li><?php echo $ingredient; ?></li>
                 <?php } ?>
             </ul>
             <dl>
@@ -56,11 +54,9 @@ $result = findRecipe($id);
                 </dt>
                 <dd><?php echo $instruction; ?></dd>
             <?php } ?>
-            </dd>
             </dl>
         </div>
-    <?php }
-    ?>
+    <?php } ?>
 </div>
 
 <?php include(SHARED_PATH . '/main_end.php'); ?>

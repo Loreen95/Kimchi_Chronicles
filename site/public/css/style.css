@@ -1,17 +1,8 @@
 /* Color palette */
-
-
 /* - Aubergine (#3D2F5F) */
-
-
 /* - Oud roze (#B17E7E) */
-
-
 /* - Blauwgroen (#007B75) */
-
-
 /* - Cremegeel (#F2E8C4) */
-
 
 /* Generic styling */
 
@@ -36,7 +27,6 @@ h1 {
 
 
 /* Grid Layout */
-
 .wrapper {
     overflow: auto;
 }
@@ -80,7 +70,6 @@ h1 {
 
 
 /* Header */
-
 h1 {
     left: -2.9%;
     position: relative;
@@ -102,10 +91,9 @@ h1 {
 
 
 /* Navigation */
-
 .topnav {
-    overflow: hidden;
     opacity: .8;
+    height: 6vh;
     display: flex;
     grid-area: navbar;
     align-items: center;
@@ -144,7 +132,6 @@ h1 {
 }
 
 /* Home Page styling */
-
 img {
     height: 50%;
     width: 60%;
@@ -159,7 +146,6 @@ img {
 
 
 /* Register styling */
-
 .formcontainer {
     width: 40%;
     margin: 0 auto;
@@ -222,7 +208,6 @@ input[type=submit] {
 
 
 /* Recipe Card */
-
 .column {
     float: left;
     width: 25%;
@@ -236,10 +221,11 @@ input[type=submit] {
 
 .card {
     margin: auto;
-    height: 300px;
+    height: 280px;
     max-width: 320px;
     text-align: center;
     font-family: arial;
+    padding: 20px 15px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -272,7 +258,6 @@ input[type=submit] {
 
 
 /* Single-recept styling */
-
 .content {
     text-align: center;
 }
@@ -302,7 +287,6 @@ li {
 
 
 /* Table styling */
-
 table {
     width: 100%;
     margin: 0 auto;
@@ -335,7 +319,6 @@ th h1 {
 
 
 /* Article styling */
-
 .article dl {
     width: 50%;
     margin: 0 auto;

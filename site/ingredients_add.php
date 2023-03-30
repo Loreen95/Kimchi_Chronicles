@@ -5,13 +5,17 @@ $result = allRecipes();
 $id = $_SESSION['id'];
 
 if (is_post_request()) {
-    $ingredients = $_POST['ingredients'];
-    
-    if (!isset($recipe_id) || empty($recipe_id)) {
-        $error = "Error: Recipe ID is not set or empty";
-    } else {
-        $result = addIngredient($ingredients);
-    }
+    $ingredientName = $_POST['ingredientName'];
+    $recipeId = $_POST['recipeid'];
+    $ingredientAmount = $_POST['ingredientAmount'];
+
+
+    $result = addIngredient($ingredientName, $recipeId, $ingredientAmount);
+    // if (!isset($recipe_id) || empty($recipe_id)) {
+    //     $error = "Error: Recipe ID is not set or empty";
+    // } else {
+    //     $result = addIngredient($ingredients);
+    // }
 }
 ?>
 
@@ -35,7 +39,7 @@ if (is_post_request()) {
 
     <form method="post">
         <div class="input-icons">
-            <select class="course" name="recipe" required>
+            <select class="course" name="recipeid" required>
                 <option value="" disabled selected>Selecteer het gerecht</option>
                 <?php foreach ($result as $step) {
                     if ($step['author'] == $_SESSION['id']) { ?>
@@ -46,33 +50,12 @@ if (is_post_request()) {
         </div>
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" name="ingredients[0][name]" placeholder="Naam">
+            <input class="input-field" type="text" name="ingredientName" placeholder="Naam">
         </div>
         <div class="input-icons">
-            <input class="input-field" type="text" name="ingredients[0][amount]" placeholder="Hoeveelheid: 1 wortel of 250 gram">
+            <input class="input-field" type="text" name="ingredientAmount" placeholder="Hoeveelheid: 1 wortel of 250 gram">
         </div>
-        <div class="input-icons">
-            <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" name="ingredients[1][name]" placeholder="Naam">
-        </div>
-        <div class="input-icons">
-            <input class="input-field" type="text" name="ingredients[1][amount]" placeholder="Hoeveelheid: 1 wortel of 250 gram">
-        </div>
-        <div class="input-icons">
-            <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" name="ingredients[2][name]" placeholder="Naam">
-        </div>
-        <div class="input-icons">
-            <input class="input-field" type="text" name="ingredients[2][amount]" placeholder="Hoeveelheid: 1 wortel of 250 gram">
-        </div>
-        <div class="input-icons">
-            <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" name="ingredients[3][name]" placeholder="Naam">
-        </div>
-        <div class="input-icons">
-            <input class="input-field" type="text" name="ingredients[3][amount]" placeholder="Hoeveelheid: 1 wortel of 250 gram">
-        </div>
-        <input class=" input-field" type="submit">
+        <input class="input-field" type="submit">
     </form>
 </div>
 

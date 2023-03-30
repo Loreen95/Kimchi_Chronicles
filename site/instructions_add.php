@@ -6,11 +6,11 @@ $result = allRecipes();
 $id = $_SESSION['id'];
 
 if (is_post_request()) {
-    $step = [];
-    $step['recipe_id'] = $_POST['recipe'] ?? '';
-    $step['steps'] = $_POST['steps'] ?? '';
+    $recipe = [];
+    $recipe['recipe_id'] = $_POST['recipe'] ?? '';
+    $recipe['steps'] = $_POST['steps'] ?? '';
 
-    $instruction = addInstructions($step);
+    $instruction = addInstructions($recipe);
 }
 ?>
 
@@ -35,9 +35,9 @@ if (is_post_request()) {
                 <option value="" disabled selected>Selecteer het gerecht</option>
                 <?php foreach ($result as $step) {
                     if ($step['author'] == $_SESSION['id']) { ?>
-                    <option value="<?php echo $step['id'] ?>"><?php echo $step['title']; ?></option>
+                        <option value="<?php echo $step['id'] ?>"><?php echo $step['title']; ?></option>
                 <?php }
-            } ?>
+                } ?>
             </select>
         </div>
         <div class="input-icons">

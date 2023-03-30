@@ -36,6 +36,7 @@ $total = totalEntries();
             <div class="topnav">
                 <div class="topnav-centered">
                     <a href="index.php">Home</a>
+                    <a href="specials.php">Specials</a>
                     <a href="recipes.php">Recepten</a>
                     <a href="ingredients.php">Ingrediënten</a>
                 </div>
