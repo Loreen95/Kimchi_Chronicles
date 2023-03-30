@@ -1,8 +1,18 @@
 /* Color palette */
+
+
 /* - Aubergine (#3D2F5F) */
+
+
 /* - Oud roze (#B17E7E) */
+
+
 /* - Blauwgroen (#007B75) */
+
+
 /* - Cremegeel (#F2E8C4) */
+
+
 /* Generic styling */
 
 a {
@@ -24,7 +34,9 @@ h1 {
     position: relative;
 }
 
+
 /* Grid Layout */
+
 .wrapper {
     overflow: auto;
 }
@@ -66,7 +78,9 @@ h1 {
     border-top: solid black 1px;
 }
 
+
 /* Header */
+
 h1 {
     left: -2.9%;
     position: relative;
@@ -78,11 +92,17 @@ h1 {
     float: left;
     font-size: 25px;
     color: #007B75;
-    position: relative;
     padding: 8px 2px;
+    position: relative;
 }
 
+.total {
+    text-align: center !important;
+}
+
+
 /* Navigation */
+
 .topnav {
     overflow: hidden;
     opacity: .8;
@@ -100,7 +120,7 @@ h1 {
 }
 
 .topnav-centered a {
-    left: 36%;
+    left: 20%;
     right: 50%;
     float: none;
     position: relative;
@@ -119,11 +139,63 @@ h1 {
     list-style: none;
 }
 
+<<<<<<< HEAD
 .topnav a:hover {
     color: #007B75;
 }
 
+=======
+.dropdown {
+    left: 30%;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .dropbtn {
+    margin: 0;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    font-size: 20px;
+    font-family: inherit;
+    background-color: inherit;
+}
+
+.topnav a:hover,
+.dropdown:hover .dropbtn {
+    color: #007B75;
+}
+
+.dropdown-content {
+    z-index: 1;
+    display: none;
+    min-width: 270px;
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+    float: none;
+    display: block;
+    color: black;
+    text-align: left;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    color: #007B75;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+>>>>>>> 10fd28760fd2d8d05f826a462b187b35134d523b
 /* Home Page styling */
+
 img {
     height: 50%;
     width: 60%;
@@ -136,46 +208,9 @@ img {
     text-align: center;
 }
 
-form.example input[type=text] {
-    top: -55vh;
-    left: 35%;
-    width: 30%;
-    float: left;
-    padding: 15px;
-    font-size: 17px;
-    position: relative;
-    border-radius: 25px;
-    background: #f1f1f1;
-    border: 1px solid grey;
-}
-
-/* Style the submit button */
-form.example button {
-    top: -54.5vh;
-    right: 34%;
-    float: right;
-    padding: 10px;
-    color: white;
-    font-size: 17px;
-    cursor: pointer;
-    border-left: none;
-    position: relative;
-    border-radius: 25px;
-    background: #007B75;
-    border: 1px solid grey;
-}
-
-form.example button:hover {
-    background: #007B75;
-}
-
-form.example::after {
-    content: "";
-    clear: both;
-    display: table;
-}
 
 /* Register styling */
+
 .formcontainer {
     width: 40%;
     margin: 0 auto;
@@ -236,7 +271,9 @@ input[type=submit] {
     box-sizing: border-box;
 }
 
+
 /* Recipe Card */
+
 .column {
     float: left;
     width: 25%;
@@ -284,7 +321,9 @@ input[type=submit] {
     position: relative;
 }
 
+
 /* Single-recept styling */
+
 .content {
     text-align: center;
 }
@@ -311,6 +350,7 @@ li {
 .terug-link:hover {
     color: #007B75;
 }
+
 
 /* Table styling */
 
@@ -341,5 +381,17 @@ th h1 {
 .iList li {
     width: 40%;
     margin: 0 auto;
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* Article styling */
+
+.article dl {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.article dt h3 {
     border-bottom: 1px solid #ddd;
 }

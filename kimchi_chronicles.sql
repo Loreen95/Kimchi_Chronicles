@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Gegenereerd op: 27 mrt 2023 om 18:50
+-- Gegenereerd op: 29 mrt 2023 om 18:53
 -- Serverversie: 10.4.28-MariaDB-1:10.4.28+maria~ubu2004
 -- PHP-versie: 8.1.15
 
@@ -46,7 +46,14 @@ INSERT INTO `ingredients` (`id`, `name`) VALUES
 (7, 'Japanse rijst'),
 (8, 'Zout'),
 (9, 'Peper'),
-(10, 'Olijfolie');
+(10, 'Olijfolie'),
+(11, 'rest'),
+(15, 'tewt'),
+(16, '123123'),
+(17, 'Bacon'),
+(18, 'Bacon'),
+(19, 'Bacon'),
+(20, 'Bacon');
 
 -- --------------------------------------------------------
 
@@ -56,9 +63,24 @@ INSERT INTO `ingredients` (`id`, `name`) VALUES
 
 CREATE TABLE `instructions` (
   `recipe_id` int(11) NOT NULL,
-  `steps` varchar(100) NOT NULL,
-  `steps_desc` varchar(100) NOT NULL
+  `steps` text NOT NULL,
+  `steps_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `instructions`
+--
+
+INSERT INTO `instructions` (`recipe_id`, `steps`, `steps_id`) VALUES
+(2, 'Kook de rijst volgens de verpakking. Snij een uitje en hak een teentje knoflook fijn. Ontdoe de zaadjes van de peper en hak ook deze fijn. Fruit dit kort aan in een pan met een klein scheutje zonnebloemolie.', 1),
+(2, 'Op het moment dat je ziet dat de uitjes gaan verkleuren, voeg je het rundergehakt toe. Even rul bakken.\r\nZodra het gehakt gaar is, voeg je een eetlepel sojasaus toe. Roer goed door. Voeg nu een eetlepel suiker toe. Roer weer goed door en laat nog voor een minuutje zachtjes bakken.', 2),
+(4, 'On medium high heat preheat a pan/wok and once heated, add the cooking oil and spread it well with a spatula.', 4),
+(4, 'Add the garlic, stir it fast for about 10 seconds. Then add the bacon and stir it well until half of it is cooked.', 5),
+(4, 'Add the Kimchi and stir until 80% of it is cooked.', 6),
+(4, '(Optional) Add the mushrooms and mix them well for a few seconds. Reduce the heat to medium-medium low.', 7),
+(4, 'Add the rice and the kimchi juice. Mix all of them together well and thoroughly.', 8),
+(4, 'Add the sesame oil and mix them well. Remove from the heat.', 9),
+(4, 'Serve the Kimchi fried rice on a plate. Garnish with the sesame seeds, green onion and seaweed strips. (Garnish is all optional). Place the cooked egg on top. Enjoy!', 10);
 
 -- --------------------------------------------------------
 
@@ -96,7 +118,7 @@ INSERT INTO `recipes` (`id`, `title`, `author`, `image`, `duration`, `course`, `
 CREATE TABLE `recipe_ingredients` (
   `recipe_id` int(11) NOT NULL,
   `ingredient_id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL
+  `amount` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
@@ -104,11 +126,9 @@ CREATE TABLE `recipe_ingredients` (
 --
 
 INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `amount`) VALUES
-(2, 7, 2),
-(4, 1, 2),
-(2, 3, 1),
-(3, 7, 2),
-(5, 2, 1);
+(2, 2, '200 gram'),
+(4, 15, ''),
+(4, 16, '');
 
 -- --------------------------------------------------------
 
@@ -147,6 +167,7 @@ ALTER TABLE `ingredients`
 -- Indexen voor tabel `instructions`
 --
 ALTER TABLE `instructions`
+  ADD PRIMARY KEY (`steps_id`),
   ADD KEY `recipe_id` (`recipe_id`);
 
 --
@@ -177,13 +198,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT voor een tabel `instructions`
+--
+ALTER TABLE `instructions`
+  MODIFY `steps_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT voor een tabel `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`

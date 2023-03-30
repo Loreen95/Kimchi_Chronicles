@@ -26,7 +26,7 @@ if (is_post_request()) {
     } elseif ($user['password'] != $user['password2']) {
         $error = "De wachtwoorden zijn niet gelijk!";
     } else {
-        $result = findUser($user);
+        $result = findUserByID($user);
 
         if ($user['email'] != $result['email']) {
             $result = addUser($user);

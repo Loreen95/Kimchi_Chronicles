@@ -68,7 +68,6 @@ if (is_post_request()) {
                 <option value="hard">Moeilijk</option>
             </select>
         </div>
-
         <input class=" input-field" type="submit">
     </form>
 </div>

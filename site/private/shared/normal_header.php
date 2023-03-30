@@ -2,6 +2,8 @@
 if (!isset($page_title)) {
     $page_title = 'General Area';
 }
+
+$total = totalEntries();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +27,8 @@ if (!isset($page_title)) {
                     <i class="fa-brands fa-twitter hicon"></i>
                     <i class="fa-brands fa-pinterest hicon"></i>
                     <h1><a href="index.php">Kimchi Chronicles</a></h1>
+                    <?php foreach($total as $tot) { ?>
+                    <h4 class="total">Aantal recepten in de database: <?php echo $tot['total_entries']; } ?></h4>
                 </div>
             </header>
             <div class="topnav">
@@ -38,6 +42,7 @@ if (!isset($page_title)) {
                         <li><a href="login.php">Inloggen</a></li>
                         <li><a href="register.php">Registreren</a></li>
                     </ul>
+<<<<<<< HEAD
                 <?php } else {
                 ?>
                     <div class="topnav-centered">
@@ -47,6 +52,23 @@ if (!isset($page_title)) {
                     <div class="topnav-right">
                         <a href="dashboard.php">Instellingen</a>
                         <a href="logout.php">Uitloggen</a>
+=======
+                <?php } else { ?>
+                    <div class="dropdown">
+                        <button class="dropbtn">
+                            <?php echo $_SESSION['user']['first_name']; ?>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown-content">
+                            <ul class="dropList">
+                                <li><a href="dashboard.php">Instellingen</a></li>
+                                <li><a href="recipes_add.php">Recepten toevoegen</a></li>
+                                <li><a href="instructions_add.php">Instructies toevoegen</a></li>
+                                <li><a href="ingredients_add.php">Ingredienten toevoegen</a></li>
+                                <li><a href="logout.php">Uitloggen</a></li>
+                            </ul>
+                        </div>
+>>>>>>> 10fd28760fd2d8d05f826a462b187b35134d523b
                     </div>
                 <?php } ?>
             </div>

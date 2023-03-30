@@ -11,11 +11,6 @@ $result = recentAdd(); ?>
 
 
 <img class="mainImg" src="public/images/background-image.jpg" />
-<form class="example" action="action_page.php">
-    <input type="text" placeholder="Recept of ingrediënt" name="search">
-    <button type="submit"><i class="fa fa-search"></i></button>
-</form>
-
 
 <div class="newEntry">
     <h1 class="rTitle">Nieuwste Recepten</h1>
