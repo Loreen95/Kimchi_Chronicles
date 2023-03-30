@@ -69,8 +69,6 @@ LIMIT 1");
 
     $result->execute([$id]);
     $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    dd($result->fetchAll());
     return $result->fetchAll();
 }
 

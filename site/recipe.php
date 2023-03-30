@@ -26,7 +26,7 @@ $result = findRecipe($id);
     } ?>
 </div>
 
-<div class="secion">
+<div class="section">
     <?php foreach ($result as $recipe) { ?>
         <h1 class="rTitle"><?php echo $recipe['title']; ?></h1>
         <h3><?php echo $recipe['author_name']; ?></h3>
@@ -40,8 +40,7 @@ $result = findRecipe($id);
                 foreach ($ingredient as $food =>  $ingredient) {
                 ?>
                     <li><?php echo $recipe['amount'] . " " . $ingredient; ?></li>
-                <?php }
-                dd($recipe) ?>
+                <?php } ?>
             </ul>
             <dl>
                 <dd>

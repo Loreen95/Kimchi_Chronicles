@@ -38,20 +38,15 @@ if (!isset($page_title)) {
                         <li><a href="login.php">Inloggen</a></li>
                         <li><a href="register.php">Registreren</a></li>
                     </ul>
-                <?php } else { ?>
-                    <div class="dropdown topnav-right">
-                        <button class="dropbtn">
-                            <?php echo $_SESSION['user']['first_name']; ?>
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-content">
-                            <ul class="dropList">
-                                <li><a href="dashboard.php">Instellingen</a></li>
-                                <li><a href="recipes_add.php">Recepten toevoegen</a></li>
-                                <li><a href="ingredients_add.php">Ingredienten toevoegen</a></li>
-                                <li><a href="logout.php">Uitloggen</a></li>
-                            </ul>
-                        </div>
+                <?php } else {
+                ?>
+                    <div class="topnav-centered">
+                        <a href="recipes_add.php">Recepten toevoegen</a>
+                        <a href="ingredients_add.php">Ingredienten toevoegen</a>
+                    </div>
+                    <div class="topnav-right">
+                        <a href="dashboard.php">Instellingen</a>
+                        <a href="logout.php">Uitloggen</a>
                     </div>
                 <?php } ?>
             </div>

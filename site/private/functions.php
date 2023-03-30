@@ -19,11 +19,10 @@ function redirect_to($location)
 }
 
 
-function dd($var){
+function dd($var)
+{
     echo "<pre>";
     var_dump($var);
-
     echo "</pre>";
-
     die;
 }
