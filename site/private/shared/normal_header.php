@@ -33,10 +33,11 @@ $total = totalEntries();
                 } ?></h4>
             </div>
         </header>
-        <div class="navbar">
+        <nav class="navbar">
             <div class="navbar-center">
                 <a href="index.php">Home</a>
                 <a href="recipes.php">Receptenlijst</a>
+                <a href="specials.php">Specials</a>
                 <a href="ingredients.php">Ingrediëntenlijst</a>
                 <?php if (!isset($_SESSION['id'])) { ?>
                     <div class="navbar-right">
@@ -51,4 +52,4 @@ $total = totalEntries();
                 <a href="logout.php">Uitloggen</a>
             </div>
         <?php } ?>
-        </div>
+        </nav>

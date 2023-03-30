@@ -1,10 +1,20 @@
 /* Color palette */
+
+
 /* - Aubergine (#3D2F5F) */
+
+
 /* - Oud roze (#B17E7E) */
+
+
 /* - Blauwgroen (#007B75) */
+
+
 /* - Cremegeel (#F2E8C4) */
 
-/* Generic styling */
+
+/* Generic */
+
 a {
     color: black;
     text-decoration: none;
@@ -14,53 +24,49 @@ body {
     margin: 0;
     padding: 0;
     font-size: 18px;
-    background-color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
-    left: 0;
-    right: 0;
-    position: relative;
+ul {
+    list-style-type: none;
 }
 
 
-/* Grid Layout */
+/* Grid */
+
 .container {
     display: grid;
-    grid-template-rows: auto;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-areas:
-        "header header header"
-        "navbar navbar navbar"
-        "footer footer footer";
+    grid-template-columns: auto;
+    grid-template-rows: auto 1fr auto;
 }
 
 .header {
-    overflow: hidden;
-    grid-area: header;
-    font-family: Arial;
+    height: 6vh;
+    color: #fff;
+    padding: 20px;
     border-bottom: solid black 1px;
-    background-color: #007B75;
+}
+
+.navbar {
+    padding: 20px;
+    background-color: #ddd;
 }
 
 .content {
-    grid-column-end: 4;
-    grid-column-start: 1;
-    background-color: #007B75;
+    padding: 20px;
+    text-align: center;
+    background-color: #f2f2f2;
 }
 
 .footer {
-    font-size: 20px;
-    grid-area: footer;
+    bottom: 0;
+    padding: 20px;
     text-align: center;
-    padding: 14px 16px;
-    font-family: Arial;
     grid-column-end: 4;
     grid-column-start: 1;
     border-top: solid black 1px;
-    background-color: #007B75;
 }
+
 
 /* Header */
 
@@ -78,12 +84,94 @@ h1 {
     position: relative;
 }
 
+
 /* Navigation */
-.topnav {
-    opacity: .8;
-    height: 6vh;
+
+.navbar {
+    padding: 10px;
     display: flex;
-    grid-area: navbar;
+    font-size: 20px;
+    align-items: center;
+    background-color: #ddd;
+    justify-content: space-between;
+}
+
+.navbar-center {
+    display: flex;
+    margin: 0 auto;
     align-items: center;
     justify-content: center;
+}
+
+.navbar-center a {
+    margin: 0 10px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.navbar-right a {
+    margin: 0 10px;
+}
+
+
+/* Forms */
+
+#image-preview {
+    height: 400px;
+    width: 500px;
+}
+
+
+/* Recepten */
+
+.column {
+    float: left;
+    width: 25%;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.card {
+    margin: auto;
+    height: 280px;
+    max-width: 320px;
+    text-align: center;
+    font-family: arial;
+    padding: 20px 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+}
+
+.card button {
+    outline: 0;
+    width: 100%;
+    border: none;
+    padding: 12px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    background-color: #000;
+}
+
+.card :hover {
+    opacity: 0.7;
+}
+
+.rTitle {
+    left: 0%;
+    right: 50%;
+    position: relative;
 }

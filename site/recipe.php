@@ -13,14 +13,18 @@ $result = findRecipe($id);
 <?php include(SHARED_PATH . '/main_start.php'); ?>
 
 <div id="content">
-    <?php foreach ($result as $recipe) {
+    <?php 
+    if (!isset($_SESSION['id'])) { ?>
+    <a class="terug-link" href="index.php">&laquo; Terug</a>
+    <? } else {
+    foreach ($result as $recipe) {
         if ($recipe['author'] == $_SESSION['id'] || $_SESSION['user']['role'] == "administrator") { ?>
             <a class="terug-link" href="index.php">&laquo; Terug</a>
             <a href="recipe_edit.php?id=<?php echo $id; ?>">Aanpassen</a>
         <?php } else { ?>
             <a class="terug-link" href="index.php">&laquo; Terug</a>
     <?php }
-    } ?>
+    } }?>
 
 </div>
 

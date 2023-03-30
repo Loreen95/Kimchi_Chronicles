@@ -1,10 +1,20 @@
 /* Color palette */
+
+
 /* - Aubergine (#3D2F5F) */
+
+
 /* - Oud roze (#B17E7E) */
+
+
 /* - Blauwgroen (#007B75) */
+
+
 /* - Cremegeel (#F2E8C4) */
 
+
 /* Generic */
+
 a {
     color: black;
     text-decoration: none;
@@ -21,38 +31,44 @@ ul {
     list-style-type: none;
 }
 
+
 /* Grid */
+
 .container {
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: auto;
     grid-template-rows: auto 1fr auto;
 }
 
 .header {
-    height: 6vh;
-    color: #fff;
+    height: 10vh;
     padding: 20px;
+    grid-column-end: 4;
+    grid-column-start: 1;
     border-bottom: solid black 1px;
 }
 
 .navbar {
-    height: 55%;
     padding: 20px;
-    background-color: #ddd;
+    grid-column-end: 4;
+    grid-column-start: 1;
 }
 
 .content {
-    height: 100vh;
     padding: 20px;
     text-align: center;
-    background-color: #f2f2f2;
+    grid-column-end: 4;
+    grid-column-start: 1;
 }
 
 .footer {
     padding: 20px;
     text-align: center;
+    grid-column-end: 4;
+    grid-column-start: 1;
     border-top: solid black 1px;
 }
+
 
 /* Header */
 
@@ -70,7 +86,9 @@ ul {
     position: relative;
 }
 
+
 /* Navigation */
+
 .navbar {
     padding: 10px;
     display: flex;
@@ -101,13 +119,76 @@ ul {
     margin: 0 10px;
 }
 
-/* Forms */
+
+/* Formulieren */
+
+.formcontainer {
+    width: 60%;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+
+.registerTitle {
+    padding: 12px 10px;
+}
+
+.errors {
+    width: 60%;
+    padding: 10px;
+    margin: 0 auto;
+    border-style: solid;
+    border-color: red;
+}
+
+input[type=submit] {
+    margin: 10px 0;
+    color: white;
+    position: relative;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background-color: #007B75;
+}
+
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.icon {
+    padding: 10px;
+    color: #007B75;
+    min-width: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.course,
+.difficulty {
+    width: 70%;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
 #image-preview {
     height: 400px;
     width: 500px;
 }
 
+
 /* Recepten */
+
 .column {
     float: left;
     width: 25%;
@@ -154,4 +235,37 @@ ul {
     left: 0%;
     right: 50%;
     position: relative;
+}
+
+
+/* Tabel en list */
+
+table {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 8px;
+    width: 25%;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th h1 {
+    right: 0;
+    left: -10px;
+    text-align: center;
+}
+
+.terug-link {
+    padding: 12px 2px;
+}
+
+.iList li {
+    width: 40%;
+    margin: 0 auto;
+    border-bottom: 1px solid #ddd;
 }
