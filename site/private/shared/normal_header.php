@@ -46,6 +46,7 @@ $total = totalEntries();
                     </div>
                 <?php } else { ?>
                     <a href="recipes_add.php">Recept toevoegen</a>
+                    <a href="ingredient_add.php">Ingredient toevoegen</a>
             </div>
             <div class="navbar-right">
                 <a href="dashboard.php">Instellingen</a>

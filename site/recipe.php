@@ -13,18 +13,19 @@ $result = findRecipe($id);
 <?php include(SHARED_PATH . '/main_start.php'); ?>
 
 <div id="content">
-    <?php 
+    <?php
     if (!isset($_SESSION['id'])) { ?>
-    <a class="terug-link" href="index.php">&laquo; Terug</a>
-    <? } else {
-    foreach ($result as $recipe) {
-        if ($recipe['author'] == $_SESSION['id'] || $_SESSION['user']['role'] == "administrator") { ?>
-            <a class="terug-link" href="index.php">&laquo; Terug</a>
-            <a href="recipe_edit.php?id=<?php echo $id; ?>">Aanpassen</a>
-        <?php } else { ?>
-            <a class="terug-link" href="index.php">&laquo; Terug</a>
+        <a class="terug-link" href="index.php">&laquo; Terug</a>
+        <? } else {
+        foreach ($result as $recipe) {
+            if ($recipe['author'] == $_SESSION['id'] || $_SESSION['user']['role'] == "administrator") { ?>
+                <a class="terug-link" href="index.php">&laquo; Terug</a>
+                <a href="recipe_edit.php?id=<?php echo $id; ?>">Aanpassen</a>
+            <?php } else { ?>
+                <a class="terug-link" href="index.php">&laquo; Terug</a>
     <?php }
-    } }?>
+        }
+    } ?>
 
 </div>
 
@@ -35,6 +36,10 @@ $result = findRecipe($id);
 
         <div class="article">
             <img src="public/images/<?php echo $recipe['image']; ?>" style="height: 500px; width: 40%" />
+            <h2>Moeilijkheid:</h2>
+            <p><?php echo $recipe['difficulty']; ?> </P>
+            <h2>Bereidingstijd:</h2>
+            <p><?php echo $recipe['duration']; ?></p>
             <h2>Ingrediënten:</h2>
             <ul class="iList">
                 <!-- Explode de array zodat alles onder elkaar komt te staan -->

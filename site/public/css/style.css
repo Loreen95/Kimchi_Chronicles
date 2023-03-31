@@ -2,14 +2,8 @@
 
 
 /* - Aubergine (#3D2F5F) */
-
-
-/* - Oud roze (#B17E7E) */
-
-
+/* - Oud roze (#B17E7E) *
 /* - Blauwgroen (#007B75) */
-
-
 /* - Cremegeel (#F2E8C4) */
 
 
@@ -144,6 +138,14 @@ ul {
     border-color: red;
 }
 
+.success {
+    width: 60%;
+    padding: 10px;
+    margin: 0 auto;
+    border-style: solid;
+    border-color: rgb(9, 128, 35);
+}
+
 input[type=submit] {
     margin: 10px 0;
     color: white;
@@ -163,6 +165,31 @@ input[type=submit] {
     margin-bottom: 20px;
 }
 
+.input-row {
+    width: 80%;
+    padding: 0;
+    margin-left: 10%;
+    text-align: left;
+    border: solid black 1px;
+}
+
+.input-field1 {
+    right: 15%;
+    width: 60%;
+    float: right;
+    text-align: center;
+    position: relative;
+}
+
+.fieldtitle {
+    right: 15%;
+    width: 60%;
+    float: right;
+    text-align: center;
+    position: relative;
+}
+
+
 .icon {
     padding: 5px;
     color: #007B75;
@@ -171,7 +198,7 @@ input[type=submit] {
 }
 
 .input-field {
-    width: 70%;
+    width: 80%;
     padding: 5px;
     text-align: center;
     box-sizing: border-box;
@@ -277,4 +304,14 @@ th h1 {
     width: 40%;
     margin: 0 auto;
     border-bottom: 1px solid #ddd;
+}
+
+/* Dashboard */
+
+.records {
+    width: 80%;
+}
+
+.record-icon {
+    text-align: center;
 }

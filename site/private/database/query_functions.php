@@ -96,9 +96,39 @@ function loginUser($email)
     return $result->fetch(PDO::FETCH_ASSOC);
 }
 
-function addRecipe($recipeName, $image, $duration, $course, $difficulty, $ingredients, $amounts, $steps)
+function addIngredients($ingredients)
 {
     global $conn;
+    $addedIngredients = [];
+
+    foreach ($ingredients as $ingredient) {
+        // Check if ingredient is empty
+        if (empty($ingredient)) {
+            continue;
+        }
+
+        // Check if ingredient already exists in database
+        $result = $conn->prepare("SELECT id FROM ingredients WHERE name = ?");
+        $result->execute([$ingredient]);
+        $ingredient_id = $result->fetchColumn();
+
+        if (!$ingredient_id) {
+            // Insert ingredient into ingredients table if it doesn't exist
+            $result = $conn->prepare("INSERT INTO ingredients (name) VALUES (?)");
+            $result->execute([$ingredient]);
+            $ingredient_id = $conn->lastInsertId();
+        }
+
+        $addedIngredients[] = $ingredient_id;
+    }
+
+    return $addedIngredients;
+}
+
+function addRecipe($recipeName, $image, $duration, $course, $difficulty, $checked_ingredients, $amounts, $steps)
+{
+    global $conn;
+
     // Puts the following data in the recipes table
     $sql = "INSERT INTO recipes (title, author, image, duration, course,  difficulty) VALUES (:title, :author, :image, :duration, :course, :difficulty)";
     $result = $conn->prepare($sql);
@@ -114,54 +144,29 @@ function addRecipe($recipeName, $image, $duration, $course, $difficulty, $ingred
     // Get the ID of the newly inserted recipe
     $recipe_id = $conn->lastInsertId();
 
-    // Insert ingredients and amounts into ingredients and recipe_ingredients tables
-    $addedIngredients = [];
-    for ($i = 0; $i < count($ingredients); $i++) {
-        $ingredient = $ingredients[$i];
+    // Insert checked ingredients into ingredients and recipe_ingredients tables
+    for ($i = 0; $i < count($checked_ingredients); $i++) {
+        $ingredient_id = $checked_ingredients[$i];
         $amount = $amounts[$i];
 
-        // Check if ingredient or amount is empty
-        if (empty($ingredient) || empty($amount)) {
+        // Insert ingredient and amount into recipe_ingredients table
+        $result = $conn->prepare("INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)");
+        $result->execute([$recipe_id, $ingredient_id, $amount]);
+    }
+
+    // Insert steps into instructions table
+    foreach ($steps as $step) {
+        // Check if step is empty
+        if (empty($step)) {
             continue;
         }
-        if (in_array($ingredient, $addedIngredients)) {
-            // Get the ingredient id
-            $result = $conn->prepare("SELECT id FROM ingredients WHERE name = ?");
-            $result->execute([$ingredient]);
-            $ingredient_id = $result->fetchColumn();
-        } else {
-            // Insert ingredient into ingredients table if it doesn't exist
-            $result = $conn->prepare("INSERT IGNORE INTO ingredients (name) VALUES (?)");
-            $result->execute([$ingredient]);
 
-            // Get the ingredient id
-            $result = $conn->prepare("SELECT id FROM ingredients WHERE name = ?");
-            $result->execute([$ingredient]);
-            $ingredient_id = $result->fetchColumn();
-
-            // Insert ingredient and amount into recipe_ingredients table
-            $result = $conn->prepare("INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)");
-            $result->execute([$recipe_id, $ingredient_id, $amount]);
-        }
-        $addedSteps = [];
-        for ($i = 0; $i < count($steps); $i++) {
-            $step = $steps[$i];
-            // Check if step is empty
-            if (empty($step)) {
-                continue;
-            }
-
-            // Check if step has already been added
-            if (in_array($step, $addedSteps)) {
-                continue;
-            } else {
-                $result = $conn->prepare("INSERT INTO instructions (recipe_id, steps) VALUES (?, ?)");
-                $result->execute([$recipe_id, $step]);
-            }
-
-            return $result;
-        }
+        // Insert step into instructions table
+        $result = $conn->prepare("INSERT INTO instructions (recipe_id, steps) VALUES (?, ?)");
+        $result->execute([$recipe_id, $step]);
     }
+
+    return $result;
 }
 
 function findUserByID($id)
@@ -180,6 +185,50 @@ function totalEntries()
     global $conn;
 
     $result = $conn->prepare("SELECT COUNT(*) AS total_entries FROM recipes");
+    $result->execute();
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}
+
+function long_recipe()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT *, MAX(duration) as max_cooking_time
+    FROM recipes
+    GROUP BY title");
+
+    $result->execute();
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}
+
+function easy_recipe()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT *
+    FROM recipes
+    WHERE difficulty = 'easy'");
+
+    $result->execute();
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}
+
+function most_ingredients()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT *
+    FROM recipes
+    INNER JOIN recipe_ingredients ON recipes.id = recipe_id
+    GROUP BY recipes.id
+    ORDER BY COUNT(ingredient_id) DESC");
+
     $result->execute();
     $result->setFetchMode(PDO::FETCH_ASSOC);
 
