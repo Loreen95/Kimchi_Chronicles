@@ -223,11 +223,11 @@ function most_ingredients()
 {
     global $conn;
 
-    $result = $conn->prepare("SELECT *
+    $result = $conn->prepare("SELECT recipes.*, COUNT(recipe_ingredients.ingredient_id) AS total_ingredients
     FROM recipes
-    INNER JOIN recipe_ingredients ON recipes.id = recipe_id
+    INNER JOIN recipe_ingredients ON recipes.id = recipe_ingredients.recipe_id
     GROUP BY recipes.id
-    ORDER BY COUNT(ingredient_id) DESC");
+    ORDER BY total_ingredients DESC");
 
     $result->execute();
     $result->setFetchMode(PDO::FETCH_ASSOC);

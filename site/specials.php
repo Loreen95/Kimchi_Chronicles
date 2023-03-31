@@ -48,6 +48,7 @@ $most_ingredients = most_ingredients();
                                                         ?>" />
                                 <h2><?php echo $recipe['title'];
                                     ?> </h2>
+                                <h3>Totaal ingrediënten: <?php echo $recipe['total_ingredients']; ?></h3>
                             </a>
                         </div>
                     </div>
@@ -68,7 +69,7 @@ $most_ingredients = most_ingredients();
                                                         ?>" />
                                 <h2><?php echo $long['title'];
                                     ?> </h2>
-                                <h3><?php echo $long['duration']; ?></h3>
+                                <h3>Bereidingstijd: <?php echo $long['duration']; ?></h3>
                             </a>
                         </div>
                     </div>
