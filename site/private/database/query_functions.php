@@ -130,7 +130,7 @@ function addRecipe($recipeName, $image, $duration, $course, $difficulty, $checke
     global $conn;
 
     // Puts the following data in the recipes table
-    $sql = "INSERT INTO recipes (title, author, image, duration, course,  difficulty) VALUES (:title, :author, :image, :duration, :course, :difficulty)";
+    $sql = "INSERT INTO recipes (title, author, image, duration, course, difficulty) VALUES (:title, :author, :image, :duration, :course, :difficulty)";
     $result = $conn->prepare($sql);
     $result->execute([
         ':title' => $recipeName,

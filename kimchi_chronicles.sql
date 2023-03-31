@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Gegenereerd op: 30 mrt 2023 om 21:33
--- Serverversie: 10.4.28-MariaDB-1:10.4.28+maria~ubu2004
--- PHP-versie: 8.1.15
+-- Gegenereerd op: 31 mrt 2023 om 13:47
+-- Serverversie: 10.4.27-MariaDB-1:10.4.27+maria~ubu2004
+-- PHP-versie: 8.0.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,9 +41,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`) VALUES
-(1, 'Cornelius', 'Arne', 'cornelius.a@kimchi.nl', '$2y$10$9M9ngWBuyWk.KYhILvo6f.ZhinWl88RVBa/kgLE31Zl2sHNmBrTo6', 'administrator'),
-(2, 'Pascal-Anne', 'Sta', 'pascal-a.sta@kimchi.nl', '$2y$10$uSNjjNqh91oG5FtnnLIIy.K6EdcDk/mSomQ.F9sp3uSXbsdCZdi2S', 'administrator'),
-(3, 'Lisa', 'Drommel', 'lisa@test.nl', '$2y$10$52BYc8Kg4Dc07Zjnv.RY8erh2o2vuAQ/qUYbYcjP13gdzSdLaVHVq', 'user');
+(1, 'Cornelius', 'Arne ', 'cornelius.a@kimchi.nl', 'password', 'administrator'),
+(2, 'Pascal-Anne', 'Sta', 'sta.pascal-a@kimchi.nl', 'password', 'administrator'),
+(3, 'Lisa', 'Test', 'test12@test.nl', 'password', 'user'),
+(4, 'Joost', 'van Gent', 'joostvangent911@gmail.com', 'xycumyzr', 'user');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -63,7 +64,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
