@@ -1,5 +1,5 @@
 <?php require_once('private/initialize.php'); ?>
-<?php $page_title = "Gebruikers dashboard";
+<?php $page_title = "Dashboard";
 
 // Check if the user is logged in
 if (!isset($_SESSION['id'])) {
@@ -21,44 +21,95 @@ if (is_post_request()) {
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
 
-<section id="gegevens">
-    <h2>User Records</h2>
-    <table class="records">
-        <thead>
-            <tr>
-                <th>Voornaam</th>
-                <th>Achternaam</th>
-                <th>Email</th>
-                <th>Aanpassen</th>
-                <th>Verwijder</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            if (!empty($result)) {
-                foreach ($result as $user) { ?>
-                    <tr>
-                        <td><?php echo $user["first_name"]; ?></td>
-                        <td><?php echo $user["last_name"]; ?></td>
-                        <td><?php echo $user["email"]; ?></td>
-                        <td>
-                            <a href="user_edit.php?id=<?php echo $user["id"] ?>" style="color: blue;"><i class='fa-solid fa-pencil-alt record-icon'></i>
-                        </td>
-                        <td>
-                            <a href="user_delete.php?id=<?php echo $user['id'] ?>" style="color: red;"><i class='record-icon fa-solid fa-times'></i>
-                        </td>
-                    </tr>
-                <?php }
-            } else { ?>
-                <tr>
-                    <td colspan='4'>Geen gegevens gevonden</td>
-                </tr>
-            <?php
+<div class="dashboard-container">
+    <div class="dashboard-column">
+        <div class="dashboard-card">
+            <div class="dashboard-card-header">
+                Dashboard
+            </div>
+            <ul class="dashboard-list">
+                <li class="dashboard-list-item"><a href="?page=user_records">Mijn gegevens</a></li>
+                <?php
+                if ($_SESSION['user']['role'] == 'administrator') { ?>
+                    <li class="dashboard-list-item"><a href="?page=user_list">Klantenlijst</a></li>
+                    <li class="dashboard-list-item"><a href="?page=user_add">Klant toevoegen</a></li>
+                    <li class="dashboard-list-item"><a href="?page=recipe_list">Receptmanagement</a></li>
+                    <li class="dashboard-list-item"><a href="?page=ingredient_list">Ingredientmanagement</a></li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
+    <div class="col-9">
+        <?php
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+            switch ($page) {
+                case 'user_records':
+                    include('user_records.php');
+                    break;
+                case 'user_list':
+                    if ($_SESSION['user']['role'] == 'administrator') {
+                        include('user_list.php');
+                    } else {
+                        redirect_to("index.php");
+                        exit();
+                    }
+                    break;
+                case 'user_add':
+                    if ($_SESSION['user']['role'] == 'administrator') {
+                        include('user_add.php');
+                    } else {
+                        redirect_to("index.php");
+                        exit();
+                    }
+                    break;
+                case 'recipe_list':
+                    if ($_SESSION['user']['role'] == 'administrator') {
+                        include('recipe_list.php');
+                    } else {
+                        redirect_to("index.php");
+                        exit();
+                    }
+                    break;
+                case 'ingredient_list':
+                    if ($_SESSION['user']['role'] == 'administrator') {
+                        include('ingredient_list.php');
+                    } else {
+                        redirect_to("index.php");
+                        exit();
+                    }
+                    break;
+                case 'recipe_edit':
+                    if ($_SESSION['user']['role'] == 'administrator') {
+                        include('recipe_edit.php');
+                    } else {
+                        redirect_to("index.php");
+                        exit();
+                    }
+                    break;
+                case 'ingredient_edit':
+                    if ($_SESSION['user']['role'] == 'administrator') {
+                        include('ingredient_edit.php');
+                    } else {
+                        redirect_to("index.php");
+                        exit();
+                    }
+                    break;
+                default:
+                    include('user_records.php');
+                    break;
             }
-            ?>
-        </tbody>
-    </table>
-</section>
+        } else {
+            include('user_records.php');
+        }
+        if (isset($_GET['edit_id'])) {
+            $edit_id = $_GET['edit_id'];
+        include('user_edit.php');
+        }
+        ?>
+    </div>
+</div>
+
 
 <?php include(SHARED_PATH . '/main_end.php'); ?>
 

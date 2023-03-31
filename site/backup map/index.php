@@ -1,5 +1,5 @@
 <?php require_once('private/initialize.php'); ?>
-<?php $page_title = "Home"; 
+<?php $page_title = "Home";
 
 $result = recentAdd();
 ?>
@@ -17,7 +17,7 @@ $result = recentAdd();
         <div class="column">
             <div class="card">
                 <h2><?php echo $recipe['title']; ?> </h2>
-                <h4><?php echo $recipe['added'];?></h4>
+                <h4><?php echo $recipe['added']; ?></h4>
                 <img src="public/images/<?php echo $recipe['image']; ?>" />
                 <a href="<?php echo 'recipe.php?id=' . $recipe['id']; ?> "><button>Lees recept</button></a>
             </div>
@@ -30,3 +30,6 @@ $result = recentAdd();
 
 <!-- Footer -->
 <?php include(SHARED_PATH . '/normal_footer.php'); ?>
+
+<td><a href="user_edit?id=<?php echo $user['id'] ?>" style="color: blue;"><i class="bi bi-pencil"></i></a></td>
+<td><a href="deleteuser.php?id=<?php echo $user['id'] ?>" style="color: red;"><i class="bi bi-x-lg"></i></a></td>

@@ -1,8 +1,13 @@
 /* Color palette */
 
+
 /* - Aubergine (#3D2F5F) */
+
+
 /* - Oud roze (#B17E7E) *
 /* - Blauwgroen (#007B75) */
+
+
 /* - Cremegeel (#F2E8C4) */
 
 
@@ -55,7 +60,9 @@ ul {
 }
 
 .footer {
+    height: 10px;
     padding: 20px;
+    overflow: hidden;
     text-align: center;
     grid-column-end: 4;
     grid-column-start: 1;
@@ -112,7 +119,7 @@ ul {
     margin: 0 10px;
 }
 
-.navbar a:hover {
+a:hover {
     color: #007B75;
 }
 
@@ -187,7 +194,6 @@ input[type=submit] {
     text-align: center;
     position: relative;
 }
-
 
 .icon {
     padding: 5px;
@@ -276,7 +282,7 @@ input[type=submit] {
 /* Tabel en list */
 
 table {
-    width: 100%;
+    width: 60%;
     margin: 0 auto;
     text-align: center;
 }
@@ -305,6 +311,7 @@ th h1 {
     border-bottom: 1px solid #ddd;
 }
 
+
 /* Dashboard */
 
 .records {
@@ -313,4 +320,21 @@ th h1 {
 
 .record-icon {
     text-align: center;
+}
+
+.dashboard-list {
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard-list-item {
+    margin-right: 20px;
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+}
+
+.dashboard-list-item:last-child {
+    margin-right: 0;
+    border-right: none;
+    padding-right: 0;
 }

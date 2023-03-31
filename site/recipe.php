@@ -56,7 +56,7 @@ $result = findRecipe($id);
                 <dd>
                     <!-- Explode de array zodat alles onder elkaar komt te staan -->
                     <?php $lijst = explode(';', $recipe['instruction_list']);
-                    foreach ($lijst as $stp =>  $instruction) {
+                    foreach ($lijst as $stp => $instruction) {
                     ?>
                 <dt>
                     <h3 class="step"><?php echo "Stap " . $stp + 1   ?>:</h3>
