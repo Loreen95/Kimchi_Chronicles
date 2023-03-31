@@ -42,10 +42,10 @@ if (is_post_request()) {
                         <td><?php echo $user["last_name"]; ?></td>
                         <td><?php echo $user["email"]; ?></td>
                         <td>
-                            <a href="dashboard.php?gegevens&edit=<?php echo $user["id"] ?>" style="color: blue;"><i class='fa-solid fa-pencil-alt record-icon'></i>
+                            <a href="user_edit.php?id=<?php echo $user["id"] ?>" style="color: blue;"><i class='fa-solid fa-pencil-alt record-icon'></i>
                         </td>
                         <td>
-                            <a href="deleterecord.php?id=<?php echo $user['id'] ?>" style="color: red;"><i class='record-iconfa-solid fa-times'></i>
+                            <a href="user_delete.php?id=<?php echo $user['id'] ?>" style="color: red;"><i class='record-icon fa-solid fa-times'></i>
                         </td>
                     </tr>
                 <?php }

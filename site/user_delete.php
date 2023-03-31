@@ -1,8 +1,8 @@
 <?php require_once('private/initialize.php'); ?>
 <?php $page_title = "Recept aanpassen";
 
-$id = $_GET[['id']];
-$result = findRecipe($id);
+$id = $_SESSION['id'];
+$result = findUserByID($id);
 
 ?>
 
@@ -11,6 +11,7 @@ $result = findRecipe($id);
 
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
+
 
 
 <?php include(SHARED_PATH . '/main_end.php'); ?>
