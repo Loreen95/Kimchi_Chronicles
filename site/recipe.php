@@ -2,7 +2,7 @@
 <?php $page_title = "Recept";
 
 $id = $_GET['id'];
-$result = findRecipe($id);
+$recipe = findRecipe($id);
 
 
 ?>
@@ -12,30 +12,30 @@ $result = findRecipe($id);
 
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
-
-<div id="content">
-    <?php
-    if (!isset($_SESSION['id'])) { ?>
-        <a class="terug-link" href="index.php">&laquo; Terug</a>
-        <? } else {
-        foreach ($result as $recipe) {
+<?php if (!$recipe) { ?>
+    <a class="terug-link" href="index.php">&laquo; Terug</a>
+    <h1>Dit recept is nog niet geheel gepubliceerd.</h1>
+<?php } else { ?>
+    <div id="content">
+        <?php
+        if (!isset($_SESSION['id'])) { ?>
+            <a class="terug-link" href="index.php">&laquo; Terug</a>
+            <? } else {
             if ($recipe['author'] == $_SESSION['id'] || $_SESSION['user']['role'] == "administrator") { ?>
                 <a class="terug-link" href="index.php">&laquo; Terug</a>
                 <a href="dashboard.php?page=recipe_edit&recipe_edit_id=<?php echo $id; ?>">Aanpassen</a>
             <?php } else { ?>
                 <a class="terug-link" href="index.php">&laquo; Terug</a>
-        <?php }
-        }
-        ?>
-</div>
-<?php
-        foreach ($result as $recipe) { ?>
+            <?php }
+
+            ?>
+    </div>
     <div class="section">
         <h1 class="rTitle"><?php echo $recipe['title']; ?></h1>
         <h3><?php echo $recipe['author_name']; ?></h3>
 
         <div class="article">
-            <img src="public/images/<?php echo $recipe['image'];?>" style="height: 500px; width: 40%" />
+            <img src="public/images/<?php echo $recipe['image']; ?>" style="height: 500px; width: 40%" />
             <h2>Moeilijkheid:</h2>
             <p><?php echo $recipe['difficulty']; ?> </P>
             <h2>Bereidingstijd:</h2>
@@ -66,7 +66,8 @@ $result = findRecipe($id);
             </dl>
         </div>
 <?php }
-    } ?>
+    }
+?>
     </div>
 
     <?php include(SHARED_PATH . '/main_end.php'); ?>

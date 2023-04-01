@@ -1,9 +1,8 @@
 <?php
 
 $id = $_GET['recipe_delete_id'];
-$result = findRecipe($id);
+$recipe = findRecipe($id);
 
-foreach($result as $recipe){
     if (is_post_request()) {
         if (isset($_POST['confirm_delete'])) {
             // User has confirmed delete, perform delete action
@@ -24,5 +23,4 @@ foreach($result as $recipe){
         echo '</form>';
         echo '</div>';
     }
-}
 ?>

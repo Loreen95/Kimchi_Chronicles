@@ -3,7 +3,7 @@
 
 
 $id = $_GET['recipe_edit_id'];
-$result = findRecipe($id);
+$recipe = findRecipe($id);
 
 if (is_post_request()) {
     $recipeName = !empty($_POST['title']) ? $_POST['title'] : $recipe['title'];
@@ -20,7 +20,6 @@ if (is_post_request()) {
 ?>
 
 <div class="formcontainer">
-<?php foreach($result as $recipe) { ?>
     <h2 class="registerTitle">Recept aanpassen</h2>
     <div id="content">
         <a href="?page=recipe_delete&recipe_delete_id=<?php echo $recipe['id'] ?>" style="color: red;">Recept verwijderen</a>
@@ -95,7 +94,7 @@ if (is_post_request()) {
             <?php for ($i = 1; $i <= 4; $i++) { ?>
                 <div class="input-icons">
                     <i class="fa-solid fa-book icon"></i>
-                    <textarea class="input-field" type="text" id="steps-<?php echo $i; ?>" name="steps[]" placeholder="Schrijf hier wat je moet doen"><?php echo isset($_POST['steps'][$i - 1]) ? $_POST['steps'][$i - 1] : ''; ?></textarea>
+                    <textarea class="input-field" type="text" id="steps-<?php echo $i; ?>" name="steps[]" placeholder="Schrijf hier wat je moet doen" value="<?php echo isset($_POST['steps'][$i - 1]) ? $_POST['steps'][$i - 1] : ''; ?>"></textarea>
                 </div>
             <?php } ?>
             <div class="input-icons">
@@ -120,5 +119,4 @@ if (is_post_request()) {
 
             <input class="input-field" type="submit">
     </form>
-    <?php } ?>
 </div>

@@ -60,9 +60,8 @@ GROUP BY
 LIMIT 1");
 
     $result->execute(['id' => $id]);
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
+    $recipe = $result->fetch();
+    return $recipe;
 }
 
 function findUserByID($id)
@@ -403,8 +402,3 @@ function deleteIngredient($id)
 
     return $result;
 }
-
-
-
-
-
