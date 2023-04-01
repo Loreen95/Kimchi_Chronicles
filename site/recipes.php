@@ -9,6 +9,11 @@ $result = allRecipes();
 
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
+
+<div id="content">
+    <a class="terug-link" href="index.php">&laquo; Terug</a>
+</div>
+
 <h1>Receptenlijst</h1>
 <?php
 if (!$result) { ?>

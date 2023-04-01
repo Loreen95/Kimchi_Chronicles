@@ -1,8 +1,8 @@
 <?php require_once('private/initialize.php'); ?>
 <?php $page_title = "Specials";
 
-$easy_recipe = easy_recipe();
-$long_recipe = long_recipe();
+$easy_recipe = easyEntry();
+$long_recipe = longEntry();
 $most_ingredients = most_ingredients();
 
 ?>
@@ -16,6 +16,13 @@ $most_ingredients = most_ingredients();
 <div id="content">
     <a class="terug-link" href="index.php">&laquo; Terug</a>
 </div>
+
+<h1>Specials</h1>
+
+<?php
+if (!$easy_recipe && !$long_recipe && !$most_ingredients){ ?>
+    <h2>Er zijn nog geen gerechten toegevoegd</h2>
+<?php } else { ?>
 
 <div class="section">
     <h1 class="rTitle">De makkelijste recepten: </h1>
@@ -73,7 +80,7 @@ $most_ingredients = most_ingredients();
                             </a>
                         </div>
                     </div>
-                <?php }
+                <?php }}
                 ?>
             </div>
         </div>

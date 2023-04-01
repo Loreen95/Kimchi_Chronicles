@@ -18,7 +18,7 @@ $result = allUsers();
             <td><?php echo $user['email']; ?></td>
             <td><?php echo $user['password']; ?></td>
             <td><a href="?page=user_edit&user_edit_id=<?php echo $user['id'] ?>" style="color: blue;"><i class="fa-solid fa-pencil"></i></a></td>
-            <td><a href="user_delete.php?id=<?php echo $user['id'] ?>" style="color: red;"><i class="fa-solid fa-times"></i></a></td>
+            <td><a href="?page=user_delete&user_delete_id=<?php echo $user['id'] ?>" style="color: red;"><i class="fa-solid fa-times"></i></a></td>
         <?php } ?>
         </tr>
 </table>

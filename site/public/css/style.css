@@ -220,6 +220,8 @@ input[type=submit] {
 #image-preview {
     height: 400px;
     width: 500px;
+    margin-left: 0;
+    margin-right: 50%;
 }
 
 #image {

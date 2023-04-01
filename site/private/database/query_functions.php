@@ -1,5 +1,6 @@
 <?php
 
+// Find functions
 function allUsers()
 {
     global $conn;
@@ -22,15 +23,6 @@ function allRecipes()
     return $result->fetchAll();
 }
 
-function recentAdd()
-{
-    global $conn;
-
-    $result = $conn->prepare("SELECT * FROM recipes ORDER BY added DESC LIMIT 8");
-    $result->execute();
-
-    return $result->fetchAll();
-}
 function allIngredients()
 {
     global $conn;
@@ -62,16 +54,112 @@ FROM
     ) AS instructions ON recipes.id = instructions.recipe_id
     INNER JOIN ingredients ON ingredient_id = ingredients.id 
 WHERE 
-    recipes.id = ?
+    recipes.id = :id
 GROUP BY 
     recipes.id 
 LIMIT 1");
 
+    $result->execute(['id' => $id]);
+    $recipe = $result->fetch();
+    return $recipe;
+}
+
+function findUserByID($id)
+{
+    global $conn;
+    $result = $conn->prepare("SELECT * FROM users WHERE id = :id");
+    $result->execute(['id' => $id]);
+    $user = $result->fetch();
+    return $user;
+}
+
+function findIngredientById($id)
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT * FROM ingredients WHERE id = :id");
+    $result->execute(['id' => $id]);
+    $ingredient = $result->fetch();
+    return $ingredient;
+}
+
+function findRecipeIngredients($id)
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT * FROM recipe_ingredients WHERE recipe_id = ?");
     $result->execute([$id]);
     $result->setFetchMode(PDO::FETCH_ASSOC);
+
     return $result->fetchAll();
 }
 
+function totalEntries()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT COUNT(*) AS total_entries FROM recipes");
+    $result->execute();
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}
+
+function longEntry()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT *, MAX(duration) as max_cooking_time
+    FROM recipes
+    GROUP BY title");
+
+    $result->execute();
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}
+
+function easyEntry()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT *
+    FROM recipes
+    WHERE difficulty = 'easy'");
+
+    $result->execute();
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}
+
+function most_ingredients()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT recipes.*, COUNT(recipe_ingredients.ingredient_id) AS total_ingredients
+    FROM recipes
+    INNER JOIN recipe_ingredients ON recipes.id = recipe_ingredients.recipe_id
+    GROUP BY recipes.id
+    ORDER BY total_ingredients DESC");
+
+    $result->execute();
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
+}
+
+function recentAdd()
+{
+    global $conn;
+
+    $result = $conn->prepare("SELECT * FROM recipes ORDER BY added DESC LIMIT 8");
+    $result->execute();
+
+    return $result->fetchAll();
+}
+
+// Add functions
 function addUser($user, $hashed_password)
 {
     global $conn;
@@ -83,17 +171,6 @@ function addUser($user, $hashed_password)
     $result->bindParam(':password', $hashed_password);
     $result->execute();
     return $result;
-}
-
-
-function loginUser($email)
-{
-    global $conn;
-
-    $result = $conn->prepare("SELECT * FROM users WHERE email = :email");
-    $result->bindParam(':email', $email);
-    $result->execute();
-    return $result->fetch(PDO::FETCH_ASSOC);
 }
 
 function addIngredients($ingredients)
@@ -169,72 +246,7 @@ function addRecipe($recipeName, $image, $duration, $course, $difficulty, $checke
     return $result;
 }
 
-function findUserByID($id)
-{
-    global $conn;
-
-    $result = $conn->prepare("SELECT * FROM users WHERE id = ?");
-    $result->execute([$id]);
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
-}
-
-function totalEntries()
-{
-    global $conn;
-
-    $result = $conn->prepare("SELECT COUNT(*) AS total_entries FROM recipes");
-    $result->execute();
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
-}
-
-function long_recipe()
-{
-    global $conn;
-
-    $result = $conn->prepare("SELECT *, MAX(duration) as max_cooking_time
-    FROM recipes
-    GROUP BY title");
-
-    $result->execute();
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
-}
-
-function easy_recipe()
-{
-    global $conn;
-
-    $result = $conn->prepare("SELECT *
-    FROM recipes
-    WHERE difficulty = 'easy'");
-
-    $result->execute();
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
-}
-
-function most_ingredients()
-{
-    global $conn;
-
-    $result = $conn->prepare("SELECT recipes.*, COUNT(recipe_ingredients.ingredient_id) AS total_ingredients
-    FROM recipes
-    INNER JOIN recipe_ingredients ON recipes.id = recipe_ingredients.recipe_id
-    GROUP BY recipes.id
-    ORDER BY total_ingredients DESC");
-
-    $result->execute();
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
-}
-
+// Edit functions
 function editUser($firstname, $lastname, $email, $hashed_password, $id) {
     global $conn;
     
@@ -255,16 +267,6 @@ function editUser($firstname, $lastname, $email, $hashed_password, $id) {
     }
 }
 
-function getIngredientById($id){
-    global $conn;
-
-    $result = $conn->prepare("SELECT * FROM ingredients WHERE id = ?");
-    $result->execute([$id]);
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
-}
-
 function editIngredient($ingredientName, $id) {
     global $conn;
 
@@ -282,44 +284,48 @@ function editIngredient($ingredientName, $id) {
 
 }
 
-function getRecipeIngredients($id)
+function addOrUpdateRecipe($recipeName, $image, $duration, $course, $difficulty, $checked_ingredients, $amounts, $steps, $id)
 {
     global $conn;
-    $result = $conn->prepare("SELECT ingredient_id FROM recipe_ingredients WHERE recipe_id = ?");
-    $result->execute([$id]);
-    $result = $result->fetchAll(PDO::FETCH_COLUMN);
-    return $result;
-}
 
-function getRecipeIngredientAmounts($id)
-{
-    global $conn;
-    $result = $conn->prepare("SELECT ingredient_id, amount FROM recipe_ingredients WHERE recipe_id = ?");
-    $result->execute([$id]);
-    $result = $result->fetchAll(PDO::FETCH_KEY_PAIR);
-    return $result;
-}
-
-function editRecipe($recipeName, $image, $duration, $course, $difficulty, $checked_ingredients, $amounts, $steps, $id){
-    global $conn;
-
-    // Update the data in the recipes table
-    $sql = "UPDATE recipes SET title = :title, author = :author, image = :image, duration = :duration, course = :course, difficulty = :difficulty WHERE id = :id";
+    // Check if recipe already exists in database
+    $sql = "SELECT * FROM recipes WHERE id = ?";
     $result = $conn->prepare($sql);
-    $result->execute([
-        ':id' => $id, // Assumes that $recipe_id is the ID of the existing recipe to be updated
-        ':title' => $recipeName,
-        ':author' => $_SESSION['id'],
-        ':image' => $image,
-        ':duration' => $duration,
-        ':course' => $course,
-        ':difficulty' => $difficulty
-    ]);
+    $result->execute([$id]);
+    $recipe = $result->fetch();
 
-    // Delete all existing recipe_ingredients for the recipe
-    $sql = "DELETE FROM recipe_ingredients WHERE recipe_id = :id";
-    $result = $conn->prepare($sql);
-    $result->execute([':id' => $id]);
+    // If recipe does not exist, insert new recipe and get its ID
+    if (!$recipe) {
+        $sql = "INSERT INTO recipes (title, author, image, duration, course, difficulty) VALUES (:title, :author, :image, :duration, :course, :difficulty)";
+        $result = $conn->prepare($sql);
+        $result->execute([
+            ':title' => $recipeName,
+            ':author' => $_SESSION['id'],
+            ':image' => $image,
+            ':duration' => $duration,
+            ':course' => $course,
+            ':difficulty' => $difficulty
+        ]);
+        $id = $conn->lastInsertId();
+    } else {
+        // Update existing recipe with new data
+        $sql = "UPDATE recipes SET title = :title, image = :image, duration = :duration, course = :course, difficulty = :difficulty WHERE id = :id";
+        $result = $conn->prepare($sql);
+        $result->execute([
+            ':title' => $recipeName,
+            ':image' => $image,
+            ':duration' => $duration,
+            ':course' => $course,
+            ':difficulty' => $difficulty,
+            ':id' => $id
+        ]);
+    }
+
+    // Delete existing recipe_ingredients and instructions for the given recipe_id
+    $result = $conn->prepare("DELETE FROM recipe_ingredients WHERE recipe_id = ?");
+    $result->execute([$id]);
+    $result = $conn->prepare("DELETE FROM instructions WHERE recipe_id = ?");
+    $result->execute([$id]);
 
     // Insert checked ingredients into ingredients and recipe_ingredients tables
     for ($i = 0; $i < count($checked_ingredients); $i++) {
@@ -330,11 +336,6 @@ function editRecipe($recipeName, $image, $duration, $course, $difficulty, $check
         $result = $conn->prepare("INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)");
         $result->execute([$id, $ingredient_id, $amount]);
     }
-
-    // Delete all existing instructions for the recipe
-    $sql = "DELETE FROM instructions WHERE recipe_id = :id";
-    $result = $conn->prepare($sql);
-    $result->execute([':id' => $id]);
 
     // Insert steps into instructions table
     foreach ($steps as $step) {
@@ -351,33 +352,57 @@ function editRecipe($recipeName, $image, $duration, $course, $difficulty, $check
     return $result;
 }
 
-function findRecipeByID($id)
+// Login function
+function loginUser($email)
 {
     global $conn;
 
-    $result = $conn->prepare("SELECT * FROM recipes WHERE id = ?");
-    $result->execute([$id]);
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
+    $result = $conn->prepare("SELECT * FROM users WHERE email = :email");
+    $result->bindParam(':email', $email);
+    $result->execute();
+    return $result->fetch(PDO::FETCH_ASSOC);
 }
 
-function findRecipeIngredients($id){
-    global $conn;
-
-    $result = $conn->prepare("SELECT * FROM recipe_ingredients WHERE recipe_id = ?");
-    $result->execute([$id]);
-    $result->setFetchMode(PDO::FETCH_ASSOC);
-
-    return $result->fetchAll();
-}
-function findInstructions($id)
+// Delete functions
+function deleteUser($id)
 {
     global $conn;
 
-    $result = $conn->prepare("SELECT * FROM instructions WHERE recipe_id = ?");
+    $result = $conn->prepare("DELETE FROM users WHERE id = ? LIMIT 1");
     $result->execute([$id]);
-    $result->setFetchMode(PDO::FETCH_ASSOC);
 
-    return $result->fetchAll();
+    return $result;
 }
+
+function deleteRecipe($id)
+{
+    global $conn;    
+
+    // Delete ingredients from recipe_ingredients table
+    $sql = 'DELETE FROM recipe_ingredients WHERE recipe_id = :id';
+    $result = $conn->prepare($sql);
+    $result->execute(['id' => $id]);
+
+    // Delete instructions from instructions table
+    $sql = 'DELETE FROM instructions WHERE recipe_id = :id';
+    $result = $conn->prepare($sql);
+    $result->execute(['id' => $id]);
+
+    $sql = 'DELETE FROM recipes WHERE id = :id';
+    $result = $conn->prepare($sql);
+    $result->execute(['id' => $id]);
+}
+
+function deleteIngredient($id)
+{
+    global $conn;
+    $result = $conn->prepare("DELETE FROM ingredients WHERE id = :id");
+    $result->execute([':id' => $id]);
+
+    return $result;
+}
+
+
+
+
+

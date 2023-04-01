@@ -17,6 +17,10 @@ if (is_post_request()) {
 
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
+<div id="content">
+    <a class="terug-link" href="index.php">&laquo; Terug</a>
+</div>
+
 <div class="formcontainer">
     <h2 class="registerTitle">Instructies toevoegen</h2>
 

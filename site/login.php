@@ -22,7 +22,8 @@ if (isset($_SESSION['id'])) {
             if ($email != $result['email']) {
                 $error = "Het emailadres is niet geldig.";
                 // Wachtwoord vergelijken
-            } else if (password_verify($password,
+            } else if (password_verify(
+                $password,
                 $hashed_password_from_database
             )) {
                 // Password is correct

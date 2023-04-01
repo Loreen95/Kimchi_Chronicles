@@ -1,17 +1,18 @@
 <?php
 
-$id = $_GET['user_edit_id'];
-$user = findUserByID($id);
-if (is_post_request()) {
-    $firstname = !empty($_POST['firstname']) ? $_POST['firstname'] : $user['first_name'];
-    $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : $user['last_name'];
-    $email = !empty($_POST['email']) ? $_POST['email'] : $user['email'];
-    $password = !empty($_POST['password']) ? $_POST['password'] : $user['password'];
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+$id = $_GET['edit_id'];
+$result = findUserByID($id);
+foreach ($result as $user) {
+    if (is_post_request()) {
+        $firstname = !empty($_POST['firstname']) ? $_POST['firstname'] : $user['first_name'];
+        $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : $user['last_name'];
+        $email = !empty($_POST['email']) ? $_POST['email'] : $user['email'];
+        $password = !empty($_POST['password']) ? $_POST['password'] : $user['password'];
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    $edit = editUser($firstname, $lastname, $email, $hashed_password, $id);
+        $edit = editUser($firstname, $lastname, $email, $hashed_password, $id);
+    }
 }
-
 ?>
 <div class="formcontainer">
     <h2 class="registerTitle">Gegevens aanpassen</h2>
@@ -22,7 +23,6 @@ if (is_post_request()) {
             <?php echo $error; ?>
         </div>
     <?php } ?>
-
         <form method="post">
             <div class="input-icons">
                 <i class="fa fa-user icon">

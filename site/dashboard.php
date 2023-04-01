@@ -41,71 +41,109 @@ if (is_post_request()) {
     </div>
     <div class="col-9">
         <?php
-        if (isset($_GET['page'])) {
-            $page = $_GET['page'];
-            switch ($page) {
-                case 'user_records':
-                    include('user_records.php');
-                    break;
-                case 'user_list':
-                    if ($_SESSION['user']['role'] == 'administrator') {
-                        include('user_list.php');
-                    } else {
-                        redirect_to("index.php");
-                        exit();
-                    }
-                    break;
-                case 'user_add':
-                    if ($_SESSION['user']['role'] == 'administrator') {
-                        include('user_add.php');
-                    } else {
-                        redirect_to("index.php");
-                        exit();
-                    }
-                    break;
-                case 'recipe_list':
-                    if ($_SESSION['user']['role'] == 'administrator') {
-                        include('recipe_list.php');
-                    } else {
-                        redirect_to("index.php");
-                        exit();
-                    }
-                    break;
-                case 'ingredient_list':
-                    if ($_SESSION['user']['role'] == 'administrator') {
-                        include('ingredient_list.php');
-                    } else {
-                        redirect_to("index.php");
-                        exit();
-                    }
-                    break;
-                case 'recipe_edit':
-                    if ($_SESSION['user']['role'] == 'administrator') {
-                        include('recipe_edit.php');
-                    } else {
-                        redirect_to("index.php");
-                        exit();
-                    }
-                    break;
-                case 'ingredient_edit':
-                    if ($_SESSION['user']['role'] == 'administrator') {
-                        include('ingredient_edit.php');
-                    } else {
-                        redirect_to("index.php");
-                        exit();
-                    }
-                    break;
-                default:
-                    include('user_records.php');
-                    break;
-            }
-        } else {
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+    switch ($page) {
+        case 'user_records':
             include('user_records.php');
-        }
-        if (isset($_GET['edit_id'])) {
-            $edit_id = $_GET['edit_id'];
-        include('user_edit.php');
-        }
+            break;
+        case 'user_list':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('user_list.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;
+        case 'user_add':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('user_add.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;
+        case 'user_edit':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('user_edit.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;
+        case 'user_delete':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('user_delete.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;
+        case 'recipe_list':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('recipe_list.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;
+        case 'recipe_edit':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('recipe_edit.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;
+        case 'recipe_delete':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('recipe_delete.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+        break;
+        case 'ingredient_list':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('ingredient_list.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;
+        case 'ingredient_edit':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('ingredient_edit.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;
+        case 'ingredient_delete':
+            if ($_SESSION['user']['role'] == 'administrator') {
+                include('ingredient_delete.php');
+            } else {
+                redirect_to("index.php");
+                exit();
+            }
+            break;    
+        default:
+            include('user_records.php');
+            break;
+    }
+} else {
+    include('user_records.php');
+}
+
+if (isset($_GET['edit_id'])) {
+    $page = $_GET['page'];
+    $edit_id = $_GET['edit_id'];
+    include($page . '_edit.php');
+} elseif (isset($_GET['delete_id'])) {
+    $page = $_GET['page'];
+    $delete_id = $_GET['delete_id'];
+    include($page . '_delete.php');
+}
         ?>
     </div>
 </div>

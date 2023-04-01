@@ -10,6 +10,9 @@ $result = allIngredients();
 <!-- Main -->
 <?php include(SHARED_PATH . '/main_start.php'); ?>
 
+<div id="content">
+    <a class="terug-link" href="index.php">&laquo; Terug</a>
+</div>
 
 <?php
 if (!$result) { ?>
@@ -18,7 +21,9 @@ if (!$result) { ?>
 
 <table class="tabel">
     <tr>
-        <th><h1>Ingrediëntenlijst</h1></th>
+        <th>
+            <h1>Ingrediëntenlijst</h1>
+        </th>
     </tr>
     <?php foreach ($result as $ingredient) { ?>
         <tr>

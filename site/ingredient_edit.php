@@ -2,12 +2,10 @@
 
 
 $id = $_GET['ingredient_edit_id'];
-$result = getIngredientById($id);
-foreach ($result as $ingredient) {
-    if (is_post_request()) {
-        $ingredientName = !empty($_POST['name']) ? $_POST['name'] : $ingredient['name'];
-        $edit = editIngredient($ingredientName, $id);
-    }
+$ingredient = findIngredientById($id);
+if (is_post_request()) {
+    $ingredientName = !empty($_POST['name']) ? $_POST['name'] : $ingredient['name'];
+    $edit = editIngredient($ingredientName, $id);
 }
 ?>
 <div class="formcontainer">

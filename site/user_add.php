@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 if (is_post_request()) {
     $user = [];
     $user['firstname'] = $_POST['firstname'] ?? '';
@@ -12,25 +11,25 @@ if (is_post_request()) {
     if (trim($user['firstname']) == "" && trim($user['lastname']) == "" && trim($user['email']) == "" && trim($user['password']) == "" && trim($user['password2']) == "") {
         $error = "Vul alle velden in.";
     } elseif (trim($user['firstname']) == "") {
-        $error = "Vul een voornaam in.";
+        $error = "Vul je voornaam in.";
     } elseif (trim($user['lastname']) == "") {
-        $error = "Vul een achternaam in.";
+        $error = "Vul je achternaam in.";
     } elseif (trim($user['email']) == "") {
-        $error = "Vul een e-mail adres in.";
+        $error = "Vul je e-mail adres in.";
     } elseif (trim($user['password']) == "") {
-        $error = "Vul een wachtwoord in.";
+        $error = "Vul je wachtwoord in.";
     } elseif (trim($user['password2']) == "") {
-        $error = "Vul een wachtwoord nog een keer in.";
+        $error = "Vul je wachtwoord nog een keer in.";
     } elseif ($user['password'] != $user['password2']) {
         $error = "De wachtwoorden zijn niet gelijk!";
     } else {
         $result = findUserByID($user);
 
-        if ($user['email'] != $result['email']) {
-            $result = addUser($user, $hashed_password);
-            redirect_to("index.php");
-        } else {
-            $error = "Dit emailadres bestaat al. <a href='login.php'>inloggen</a>?";
+    if ($user['email'] != $result['email']) {
+        $result = addUser($user, $hashed_password);
+        redirect_to("dashboard.php?page=user_list");
+    } else {
+        $error = "Dit emailadres bestaat al. <a href='login.php'>inloggen</a>?";
         }
     }
 }

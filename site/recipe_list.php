@@ -15,7 +15,7 @@ $result = allRecipes()
             <td><?php echo $recipe['id']; ?></td>
             <td><?php echo $recipe['title']; ?></td>
             <td><a href="?page=recipe_edit&recipe_edit_id=<?php echo $recipe['id'] ?>" style="color: blue;"><i class="fa-solid fa-pencil"></i></a></td>
-            <td><a href="recipe_delete.php?id=<?php echo $recipe['id'] ?>" style="color: red;"><i class="fa-solid fa-times"></i></a></td>
+            <td><a href="?page=recipe_delete&recipe_delete_id=<?php echo $recipe['id'] ?>" style="color: red;"><i class="fa-solid fa-times"></i></a></td>
         <?php } ?>
         </tr>
 </table>
