@@ -1,8 +1,7 @@
 <?php
 
 $id = $_GET['edit_id'];
-$result = findUserByID($id);
-foreach ($result as $user) {
+$user = findUserByID($id);
     if (is_post_request()) {
         $firstname = !empty($_POST['firstname']) ? $_POST['firstname'] : $user['first_name'];
         $lastname = !empty($_POST['lastname']) ? $_POST['lastname'] : $user['last_name'];
@@ -12,7 +11,6 @@ foreach ($result as $user) {
 
         $edit = editUser($firstname, $lastname, $email, $hashed_password, $id);
     }
-}
 ?>
 <div class="formcontainer">
     <h2 class="registerTitle">Gegevens aanpassen</h2>

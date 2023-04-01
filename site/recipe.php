@@ -2,7 +2,7 @@
 <?php $page_title = "Recept";
 
 $id = $_GET['id'];
-$recipe = findRecipe($id);
+$result = findRecipe($id);
 
 
 ?>
@@ -18,54 +18,58 @@ $recipe = findRecipe($id);
     if (!isset($_SESSION['id'])) { ?>
         <a class="terug-link" href="index.php">&laquo; Terug</a>
         <? } else {
-        if ($recipe['author'] == $_SESSION['id'] || $_SESSION['user']['role'] == "administrator") { ?>
-            <a class="terug-link" href="index.php">&laquo; Terug</a>
-            <a href="dashboard.php?page=recipe_edit&recipe_edit_id=<?php echo $id; ?>">Aanpassen</a>
-        <?php } else { ?>
-            <a class="terug-link" href="index.php">&laquo; Terug</a>
+        foreach ($result as $recipe) {
+            if ($recipe['author'] == $_SESSION['id'] || $_SESSION['user']['role'] == "administrator") { ?>
+                <a class="terug-link" href="index.php">&laquo; Terug</a>
+                <a href="dashboard.php?page=recipe_edit&recipe_edit_id=<?php echo $id; ?>">Aanpassen</a>
+            <?php } else { ?>
+                <a class="terug-link" href="index.php">&laquo; Terug</a>
         <?php }
+        }
         ?>
 </div>
+<?php
+        foreach ($result as $recipe) { ?>
+    <div class="section">
+        <h1 class="rTitle"><?php echo $recipe['title']; ?></h1>
+        <h3><?php echo $recipe['author_name']; ?></h3>
 
-<div class="section">
-    <h1 class="rTitle"><?php echo $recipe['title']; ?></h1>
-    <h3><?php echo $recipe['author_name']; ?></h3>
-
-    <div class="article">
-        <img src="public/images/<?php echo $recipe['image']; ?>" style="height: 500px; width: 40%" />
-        <h2>Moeilijkheid:</h2>
-        <p><?php echo $recipe['difficulty']; ?> </P>
-        <h2>Bereidingstijd:</h2>
-        <p><?php echo $recipe['duration']; ?></p>
-        <h2>Ingrediënten:</h2>
-        <ul class="iList">
-            <!-- Explode de array zodat alles onder elkaar komt te staan -->
-            <?php $ingredient = explode(',', $recipe['ingredient_list']);
-            foreach ($ingredient as $ingredient) {
-            ?>
-                <li><?php echo $ingredient; ?></li>
-            <?php } ?>
-        </ul>
-        <dl>
-            <dt>
-                <h2>Bereiding:</h2>
-            </dt>
-            <dd>
+        <div class="article">
+            <img src="public/images/<?php echo $recipe['image'];?>" style="height: 500px; width: 40%" />
+            <h2>Moeilijkheid:</h2>
+            <p><?php echo $recipe['difficulty']; ?> </P>
+            <h2>Bereidingstijd:</h2>
+            <p><?php echo $recipe['duration']; ?></p>
+            <h2>Ingrediënten:</h2>
+            <ul class="iList">
                 <!-- Explode de array zodat alles onder elkaar komt te staan -->
-                <?php $lijst = explode(';', $recipe['instruction_list']);
-                foreach ($lijst as $stp => $instruction) {
+                <?php $ingredient = explode(',', $recipe['ingredient_list']);
+                foreach ($ingredient as $ingredient) {
                 ?>
-            <dt>
-                <h3 class="step"><?php echo "Stap " . $stp + 1   ?>:</h3>
-            </dt>
-            <dd><?php echo $instruction; ?></dd>
-        <?php } ?>
-        </dl>
+                    <li><?php echo strtolower($ingredient); ?></li>
+                <?php } ?>
+            </ul>
+            <dl>
+                <dt>
+                    <h2>Bereiding:</h2>
+                </dt>
+                <dd>
+                    <!-- Explode de array zodat alles onder elkaar komt te staan -->
+                    <?php $lijst = explode(';', $recipe['instruction_list']);
+                    foreach ($lijst as $stp => $instruction) {
+                    ?>
+                <dt>
+                    <h3 class="step"><?php echo "Stap " . $stp + 1   ?>:</h3>
+                </dt>
+                <dd><?php echo $instruction; ?></dd>
+            <?php } ?>
+            </dl>
+        </div>
+<?php }
+    } ?>
     </div>
-<?php } ?>
-</div>
 
-<?php include(SHARED_PATH . '/main_end.php'); ?>
+    <?php include(SHARED_PATH . '/main_end.php'); ?>
 
-<!-- Footer -->
-<?php include(SHARED_PATH . '/normal_footer.php'); ?>
+    <!-- Footer -->
+    <?php include(SHARED_PATH . '/normal_footer.php'); ?>

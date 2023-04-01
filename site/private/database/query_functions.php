@@ -60,8 +60,9 @@ GROUP BY
 LIMIT 1");
 
     $result->execute(['id' => $id]);
-    $recipe = $result->fetch();
-    return $recipe;
+    $result->setFetchMode(PDO::FETCH_ASSOC);
+
+    return $result->fetchAll();
 }
 
 function findUserByID($id)
@@ -206,13 +207,14 @@ function addRecipe($recipeName, $image, $duration, $course, $difficulty, $checke
 {
     global $conn;
 
+
     // Puts the following data in the recipes table
     $sql = "INSERT INTO recipes (title, author, image, duration, course, difficulty) VALUES (:title, :author, :image, :duration, :course, :difficulty)";
     $result = $conn->prepare($sql);
     $result->execute([
         ':title' => $recipeName,
         ':author' => $_SESSION['id'],
-        ':image' => $image,
+        ':image' =>  $image,
         ':duration' => $duration,
         ':course' => $course,
         ':difficulty' => $difficulty
