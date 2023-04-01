@@ -39,7 +39,7 @@ if (is_post_request()) {
         </div>
     <?php } ?>
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post">
         <div class="input-icons" id="image">
             <label for="image-upload">Upload Foto:</label>
             <input class="input-field" type="file" id="image-upload" name="image-upload" accept="image/*">

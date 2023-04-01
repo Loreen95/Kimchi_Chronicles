@@ -110,8 +110,9 @@ function longEntry()
     global $conn;
 
     $result = $conn->prepare("SELECT *, MAX(duration) as max_cooking_time
-    FROM recipes
-    GROUP BY title");
+FROM recipes
+GROUP BY title
+HAVING max_cooking_time > '01:00:00'");
 
     $result->execute();
     $result->setFetchMode(PDO::FETCH_ASSOC);
@@ -141,6 +142,7 @@ function most_ingredients()
     FROM recipes
     INNER JOIN recipe_ingredients ON recipes.id = recipe_ingredients.recipe_id
     GROUP BY recipes.id
+    HAVING total_ingredients > 15
     ORDER BY total_ingredients DESC");
 
     $result->execute();
