@@ -20,14 +20,18 @@ $recipe = findRecipe($id);
         if (!isset($_SESSION['id'])) { ?>
             <a class="terug-link" href="index.php">&laquo; Terug</a>
             <? } else {
-            if ($recipe['author'] == $_SESSION['id'] || $_SESSION['user']['role'] == "administrator") { ?>
+            if ($recipe['author'] == $_SESSION['id']) { ?>
+                <a class="terug-link" href="index.php">&laquo; Terug</a>
+                <a href="dashboard.php?page=user_recipes_edit&user_recipes_edit_id=<?php echo $id; ?>">Aanpassen</a>
+            <?php } else if ($_SESSION['user']['role'] == "administrator") { ?>
                 <a class="terug-link" href="index.php">&laquo; Terug</a>
                 <a href="dashboard.php?page=recipe_edit&recipe_edit_id=<?php echo $id; ?>">Aanpassen</a>
             <?php } else { ?>
                 <a class="terug-link" href="index.php">&laquo; Terug</a>
-            <?php }
+        <?php }
+        }
 
-            ?>
+        ?>
     </div>
     <div class="section">
         <h1 class="rTitle"><?php echo $recipe['title']; ?></h1>
@@ -69,9 +73,8 @@ $recipe = findRecipe($id);
             </dd>
             </dl>
         </div>
-<?php }
-    }
-?>
+    <?php }
+    ?>
     </div>
 
     <?php include(SHARED_PATH . '/main_end.php'); ?>
