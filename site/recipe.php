@@ -4,7 +4,6 @@
 $id = $_GET['id'];
 $recipe = findRecipe($id);
 
-
 ?>
 
 <!-- Header -->

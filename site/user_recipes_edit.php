@@ -1,7 +1,7 @@
 <?php require_once('private/initialize.php'); ?>
 <?php $page_title = "Recept aanpassen";
 
-$id = $_GET['recipe_edit_id'];
+$id = $_GET['user_recipes_edit_id'];
 $recipe = findRecipe($id);
 
 if (is_post_request()) {
@@ -19,7 +19,7 @@ if (is_post_request()) {
     if ($result === true) {
         // redirect_to("dashboard.php?page=recipe_list");
     } else {
-        redirect_to("dashboard.php?page=recipe_list");
+        redirect_to("dashboard.php?page=user_recipes");
     }
 }
 

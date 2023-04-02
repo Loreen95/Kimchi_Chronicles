@@ -36,6 +36,9 @@ function allIngredients()
 function findRecipe($id)
 {
     global $conn;
+
+    // Een uitgebreide join-query welke alle nodige tabellen combineert, zodat deze weergegeven kunnen worden op de pagina.
+
     $result = $conn->prepare("SELECT *,
     recipes.author, CONCAT(users.first_name, ' ', users.last_name) AS author_name,
     GROUP_CONCAT(DISTINCT recipe_ingredients.amount, ' ', ingredients.name SEPARATOR ', ') AS ingredient_list,
@@ -92,6 +95,15 @@ function findRecipeIngredients($id)
     $result->setFetchMode(PDO::FETCH_ASSOC);
 
     return $result->fetchAll();
+}
+
+function findRecipesByAuthor($id)
+{
+    global $conn;
+    $result = $conn->prepare("SELECT * FROM recipes WHERE author = :id");
+    $result->execute(['id' => $id]);
+    $recipes = $result->fetchAll();
+    return $recipes;
 }
 
 function totalEntries()
@@ -292,13 +304,13 @@ function addOrUpdateRecipe($recipeName, $image, $duration, $course, $difficulty,
 {
     global $conn;
 
-    // Check if recipe already exists in database
+    // Zoek het bestaande recept in de database
     $sql = "SELECT * FROM recipes WHERE id = ?";
     $result = $conn->prepare($sql);
     $result->execute([$id]);
     $recipe = $result->fetch();
 
-    // If recipe does not exist, insert new recipe and get its ID
+    // Als het recept niet bestaat, maak een nieuwe aan (krijgt een nieuw ID)
     if (!$recipe) {
         $sql = "INSERT INTO recipes (title, author, image, duration, course, difficulty) VALUES (:title, :author, :image, :duration, :course, :difficulty)";
         $result = $conn->prepare($sql);
@@ -312,7 +324,7 @@ function addOrUpdateRecipe($recipeName, $image, $duration, $course, $difficulty,
         ]);
         $id = $conn->lastInsertId();
     } else {
-        // Update existing recipe with new data
+        // Update bestaand recept
         $sql = "UPDATE recipes SET title = :title, image = :image, duration = :duration, course = :course, difficulty = :difficulty WHERE id = :id";
         $result = $conn->prepare($sql);
         $result->execute([

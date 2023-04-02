@@ -15,7 +15,7 @@ if (is_post_request()) {
     $steps = $_POST['steps'];
 
     // Call the function with the $steps parameter as an array
-    $result = addRecipe($recipeName, $image, $duration, $course, $difficulty, $checked_ingredients, $amounts, $steps);
+    $result = addOrUpdateRecipe($recipeName, $image, $duration, $course, $difficulty, $checked_ingredients, $amounts, $steps, $id);
 }
 ?>
 
