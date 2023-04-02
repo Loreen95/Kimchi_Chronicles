@@ -34,61 +34,61 @@ if (is_post_request()) {
     <form method="post">
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-1" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-1" name="ingredients[]" placeholder="Ingrediënt" required pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-2" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-2" name="ingredients[]" placeholder="Ingrediënt" required pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-3" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-3" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-4" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-4" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-5" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-5" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-6" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-6" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-7" name="ingredients[]" placeholder="Ingrediënt">
-        </div>
-
-        <div class="input-icons">
-            <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-8" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-7" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-9" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-8" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-10" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-9" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-11" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-10" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <div class="input-icons">
             <i class="fa-solid fa-bowl-food icon"></i>
-            <input class="input-field" type="text" id="ingredient-12" name="ingredients[]" placeholder="Ingrediënt">
+            <input class="input-field" type="text" id="ingredient-11" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
+        </div>
+
+        <div class="input-icons">
+            <i class="fa-solid fa-bowl-food icon"></i>
+            <input class="input-field" type="text" id="ingredient-12" name="ingredients[]" placeholder="Ingrediënt" pattern="[A-Za-z]+" maxlength="100">
         </div>
 
         <input class="input-field" type="submit">

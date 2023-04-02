@@ -208,7 +208,6 @@ function addRecipe($recipeName, $image, $duration, $course, $difficulty, $checke
 {
     global $conn;
 
-
     // Puts the following data in the recipes table
     $sql = "INSERT INTO recipes (title, author, image, duration, course, difficulty) VALUES (:title, :author, :image, :duration, :course, :difficulty)";
     $result = $conn->prepare($sql);
@@ -225,13 +224,15 @@ function addRecipe($recipeName, $image, $duration, $course, $difficulty, $checke
     $recipe_id = $conn->lastInsertId();
 
     // Insert checked ingredients into ingredients and recipe_ingredients tables
-    for ($i = 0; $i < count($checked_ingredients); $i++) {
-        $ingredient_id = $checked_ingredients[$i];
-        $amount = $amounts[$i];
+    $count = 0;
+    foreach ($checked_ingredients as $ingredient_id) {
+        $amount = $amounts[$count];
 
         // Insert ingredient and amount into recipe_ingredients table
         $result = $conn->prepare("INSERT INTO recipe_ingredients (recipe_id, ingredient_id, amount) VALUES (?, ?, ?)");
         $result->execute([$recipe_id, $ingredient_id, $amount]);
+
+        $count++;
     }
 
     // Insert steps into instructions table

@@ -37,16 +37,20 @@ $recipe = findRecipe($id);
         <div class="article">
             <img src="public/images/<?php echo $recipe['image']; ?>" style="height: 500px; width: 40%" />
             <h2>Moeilijkheid:</h2>
-            <p><?php echo $recipe['difficulty']; ?> </P>
+            <p><?php echo $recipe['difficulty']; ?> </p>
             <h2>Bereidingstijd:</h2>
             <p><?php echo $recipe['duration']; ?></p>
             <h2>Ingrediënten:</h2>
             <ul class="iList">
                 <!-- Explode de array zodat alles onder elkaar komt te staan -->
-                <?php $ingredient = explode(',', $recipe['ingredient_list']);
-                foreach ($ingredient as $ingredient) {
+                <?php
+                $ingredients = explode(',', $recipe['ingredient_list']);
+                foreach ($ingredients as $ingredient) {
+                    $parts = explode(' ', $ingredient);
+                    $amount = $parts[0];
+                    $name = implode(' ', array_slice($parts, 1));
                 ?>
-                    <li><?php echo strtolower($ingredient); ?></li>
+                    <li><?php echo $amount . ' ' . strtolower($name); ?></li>
                 <?php } ?>
             </ul>
             <dl>
@@ -56,13 +60,14 @@ $recipe = findRecipe($id);
                 <dd>
                     <!-- Explode de array zodat alles onder elkaar komt te staan -->
                     <?php $lijst = explode(';', $recipe['instruction_list']);
-                    foreach ($lijst as $stp => $instruction) {
+                    foreach (array_reverse($lijst) as $stp => $instruction) {
                     ?>
                 <dt>
-                    <h3 class="step"><?php echo "Stap " . $stp + 1   ?>:</h3>
+                    <h3 class="step"><?php echo "Stap " . ($stp + 1)   ?>:</h3>
                 </dt>
                 <dd><?php echo $instruction; ?></dd>
             <?php } ?>
+            </dd>
             </dl>
         </div>
 <?php }

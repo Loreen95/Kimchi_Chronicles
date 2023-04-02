@@ -14,10 +14,10 @@ if (is_post_request()) {
     $amounts = $_POST['amounts'];
     $steps = $_POST['steps'];
 
+    // Call the function with the $steps parameter as an array
     $result = addRecipe($recipeName, $image, $duration, $course, $difficulty, $checked_ingredients, $amounts, $steps);
 }
 ?>
-
 
 
 <!-- Header -->
@@ -53,7 +53,7 @@ if (is_post_request()) {
 
         <div class="input-icons">
             <i class="fa-solid fa-clock icon"></i>
-            <input class="input-field" type="text" id="input2" name="duration" placeholder="HH:MM:SS" required>
+            <input class="input-field" type="text" id="input2" name="duration" placeholder="HH:MM:SS" required required pattern="[0-9]{2}:[0-9]{2}:[0-9]{2}">
         </div>
 
         <div class="input-row" style="max-height: 300px; overflow-y: auto;">
@@ -62,35 +62,27 @@ if (is_post_request()) {
                 <div class="input-icons">
                     <input class="input-field2" type="checkbox" id="ingredient-<?php echo $ingredient['id']; ?>" name="ingredients[]" value="<?php echo $ingredient['id']; ?>">
                     <label class="input-field3" for="ingredient-<?php echo $ingredient['id']; ?>"><?php echo $ingredient['name']; ?></label>
-                    <input class="input-field1" type="text" id="amount" name="amounts[]" placeholder="Hoeveelheid">
+                    <input class="input-field1" type="text" id="amount-<?php echo $ingredient['id']; ?>" name="amounts[]" placeholder="Hoeveelheid">
                 </div>
             <?php } ?>
         </div>
-
-        <div class="input-icons">
-            <i class="fa-solid fa-book icon"></i>
-            <textarea class="input-field" type="text" id="steps-1" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
+        <div id="step-container">
+            <div class="input-icons">
+                <i class="fa-solid fa-book icon"></i>
+                <textarea class="input-field" type="text" id="steps-1" name="steps[]" placeholder="Schrijf hier wat je moet doen" required></textarea>
+            </div>
         </div>
 
-        <div class="input-icons">
-            <i class="fa-solid fa-book icon"></i>
-            <textarea class="input-field" type="text" id="steps-2" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
+        <div>
+            <input type="checkbox" id="add-step-checkbox" />
+            <label for="add-step-checkbox">Voeg een nieuwe stap toe</label>
         </div>
 
-        <div class="input-icons">
-            <i class="fa-solid fa-book icon"></i>
-            <textarea class="input-field" type="text" id="steps-3" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
-        </div>
-        <div class="input-icons">
-            <i class="fa-solid fa-book icon"></i>
-            <textarea class="input-field" type="text" id="steps-4" name="steps[]" placeholder="Schrijf hier wat je moet doen"></textarea>
-        </div>
-
-
+        <script src="../../public/script/form.js"></script>
 
         <div class="input-icons">
             <i class="fa-solid fa-turn-up icon"></i>
-            <select class="input-field" name="course">
+            <select class="input-field" name="course" required>
                 <option value="" selected disabled>Kies de menugang</option>
                 <option value="starter">Voorgerecht</option>
                 <option value="main">Hoofdgerecht</option>
@@ -100,7 +92,7 @@ if (is_post_request()) {
 
         <div class="input-icons">
             <i class="fa-solid fa-turn-up icon"></i>
-            <select class="input-field" name="difficulty">
+            <select class="input-field" name="difficulty" required>
                 <option value="" selected disabled>Kies de Moeilijkheid</option>
                 <option value="easy">Makkelijk</option>
                 <option value="medium">Gemiddeld</option>

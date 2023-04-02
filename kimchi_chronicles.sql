@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mariadb
--- Gegenereerd op: 01 apr 2023 om 22:26
+-- Gegenereerd op: 02 apr 2023 om 16:48
 -- Serverversie: 10.4.28-MariaDB-1:10.4.28+maria~ubu2004
 -- PHP-versie: 8.1.15
 
@@ -113,10 +113,10 @@ INSERT INTO `instructions` (`recipe_id`, `steps`, `steps_id`, `steps_desc`) VALU
 (48, 'Kook de zoete aardappelnoedels volgens de instructies op de verpakking. Spoel ze af onder koud water en laat ze uitlekken.\r\nVerhit de plantaardige olie in een wok of koekenpan op middelhoog vuur. Voeg de knoflook toe en roerbak 30 seconden.', 113, NULL),
 (48, 'Voeg de paprika, ui, lente-uitjes en shiitake paddenstoelen toe en roerbak gedurende 5 minuten, of tot de groenten zacht zijn.\r\nVoeg de spinazie toe en roerbak totdat deze net verwelkt is.', 114, NULL),
 (48, 'Voeg de gekookte noedels, sojasaus, sesamolie en suiker toe. Roerbak alles samen gedurende 2-3 minuten, of totdat de noedels en groenten volledig bedekt zijn met de saus.\r\nServeer warm of op kamertemperatuur.', 115, NULL),
-(49, 'Week de kleefrijst gedurende minstens 4 uur in water. Giet de rijst af en laat deze uitlekken.\r\nVerhit een eetlepel olie in een pan op middelhoog vuur. Voeg de ui en knoflook toe en roerbak 1 minuut.', 116, NULL),
-(49, 'Voeg het varkensgehakt en de garnalen toe en bak totdat het vlees bruin is.\r\nVoeg de sojasaus, oestersaus, suiker, zout en witte peper toe en roer alles door elkaar. Voeg de shiitake paddenstoelen toe en bak 2 minuten langer.\r\nDoe de kleefrijst in een kom en meng de vulling erdoorheen.', 117, NULL),
-(49, 'Week de bamboe bladeren in warm water totdat ze zacht zijn. Knip ze in stukken van ongeveer 20 cm lang. Leg een stukje bamboe blad op je handpalm en leg hierop een eetlepel van het rijstmengsel. Vouw de bladeren dicht en bind ze dicht met touw. Herhaal dit proces met de rest van het rijstmengsel.\r\nKook de dumplings in een grote pan met water gedurende ongeveer 1 uur.', 118, NULL),
-(49, 'Haal de dumplings uit de pan en laat ze uitlekken. Bestrijk de dumplings met het losgeklopte ei en grill ze gedurende 5-7 minuten totdat ze goudbruin en knapperig zijn.\r\nServeer warm.', 119, NULL);
+(55, 'Week de kleefrijst minstens 3 uur in water.', 148, NULL),
+(55, 'Meng het gehakt met sojasaus, oestersaus, maizena, suiker, knoflook en ui.\r\nVerhit de olie in een wok of pan en voeg het gehaktmengsel toe. Bak het gehakt rul en voeg vervolgens de groenten toe. Bak deze nog 3-4 minuten tot ze zacht zijn. Breng op smaak met zout en peper.', 149, NULL),
+(55, 'Laat de kleefrijst uitlekken en stoom deze in een stoommandje of -pan tot deze gaar is (ongeveer 20-25 minuten).\r\nMaak de dumplings door een kleine hoeveelheid rijst in je hand te nemen, er een kuiltje in te maken en een lepel van het gehakt-groentemengsel erin te leggen. Vouw de rijst om de vulling heen en vorm er een bal van.', 150, NULL),
+(55, 'Stoom de dumplings in een stoommandje of -pan gedurende 10-12 minuten, of tot ze gaar zijn.\r\nServeer de dumplings warm.', 151, NULL);
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ INSERT INTO `recipes` (`id`, `title`, `image`, `author`, `duration`, `course`, `
 (44, 'Bibimbap', 'bibimbap.jpg', 1, '01:30:00', 'main', 'medium', '2023-04-01'),
 (45, 'Kimchi Fried Rice', 'kimchi.jpg', 1, '00:30:00', 'main', 'easy', '2023-04-01'),
 (48, 'Japchae', 'japchae.jpg', 1, '00:40:00', 'main', 'easy', '2023-04-01'),
-(49, 'Sticky Rice Dumplings', 'sticky-rice-dumpling.jpg', 1, '03:00:00', 'main', 'medium', '2023-04-01');
+(55, 'Sticky Rice Dumplings', 'sticky-rice-dumpling.jpg', 1, '05:00:00', 'main', 'hard', '2023-04-02');
 
 -- --------------------------------------------------------
 
@@ -198,17 +198,19 @@ INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredient_id`, `amount`, `id`) 
 (48, 4, '3 eetlepels', 351),
 (48, 9, '150 gram', 352),
 (48, 5, '2 theelepels', 353),
-(49, 11, '1 (fijngehakt)', 354),
-(49, 8, '1', 355),
-(49, 123, '100 gram', 356),
-(49, 28, '200 gram', 357),
-(49, 122, '500 gram', 358),
-(49, 108, '3 tenen', 359),
-(49, 124, '2 eetlepels', 360),
-(49, 111, '10-20 gram gedroogde, geweekte en in stukjes gesneden', 361),
-(49, 4, '3 eetlepels', 362),
-(49, 5, '1 eetlepel', 363),
-(49, 17, '1 theelepel', 364);
+(55, 11, '1, fijngehakt', 463),
+(55, 13, '', 464),
+(55, 108, '', 465),
+(55, 124, '', 466),
+(55, 15, '', 467),
+(55, 25, '', 468),
+(55, 6, '', 469),
+(55, 7, '', 470),
+(55, 110, '100 gram in kleine stukjes gesneden', 471),
+(55, 14, '', 472),
+(55, 20, '', 473),
+(55, 17, '', 474),
+(55, 16, '', 475);
 
 -- --------------------------------------------------------
 
@@ -232,7 +234,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `role`) VALUES
 (1, 'Cornelius', 'Arne', 'cornelius.a@kimchi.nl', '$2y$10$0/9BBQ8Q4gCRFEuBpJDK3eCG0dQ9TdCmLtU2UTYPOhHh3hhJ1ZJL.', 'administrator'),
 (2, 'Pascal-Anne', 'Sta', 'pascal-a.sta@kimchi.nl', '$2y$10$rGL8KTdimaMfYzddAO87reFnU1Ci90EFFipTS3jYrzBbFruNHYKxC', 'administrator'),
-(4, 'Joost', 'van Gent', 'joostvangent911@gmail.com', '$2y$10$A4051EkFirLCpKGx/lOiyud0wS4aVd6Bi0uCP46cc9Jt5s0lFE/TC', 'user');
+(4, 'Joost', 'van Gent', 'joostvangent911@gmail.com', '$2y$10$A4051EkFirLCpKGx/lOiyud0wS4aVd6Bi0uCP46cc9Jt5s0lFE/TC', 'user'),
+(14, 'Lisa', 'Hakhoff', 'lisahakhoff@ziggo.nl', '$2y$10$6Fo4.VHIjXx3h3SZJjxVOOJ1awQ3SfPEUy6WHx8GS32ynLymFPdtK', 'user');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -286,25 +289,25 @@ ALTER TABLE `ingredients`
 -- AUTO_INCREMENT voor een tabel `instructions`
 --
 ALTER TABLE `instructions`
-  MODIFY `steps_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `steps_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
 -- AUTO_INCREMENT voor een tabel `recipes`
 --
 ALTER TABLE `recipes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT voor een tabel `recipe_ingredients`
 --
 ALTER TABLE `recipe_ingredients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=365;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=499;
 
 --
 -- AUTO_INCREMENT voor een tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Beperkingen voor geëxporteerde tabellen

@@ -31,7 +31,7 @@ if (is_post_request()) {
 
         if ($user['email'] != $result['email']) {
             $result = addUser($user, $hashed_password);
-            redirect_to("index.php");
+            redirect_to("login.php");
         } else {
             $error = "Dit emailadres bestaat al. <a href='login.php'>inloggen</a>?";
         }
@@ -60,30 +60,30 @@ if (is_post_request()) {
         <div class="input-icons">
             <i class="fa fa-user icon">
             </i>
-            <input class="input-field" type="text" placeholder="Voornaam" name="firstname">
+            <input class="input-field" type="text" placeholder="Voornaam" name="firstname" required pattern="[A-Za-z]+" maxlength="50">
         </div>
 
         <div class="input-icons">
             <i class="fa fa-user icon">
             </i>
-            <input class="input-field" type="text" placeholder="Achternaam" name="lastname">
+            <input class="input-field" type="text" placeholder="Achternaam" name="lastname" required pattern="[A-Za-z]+" maxlength="50">
         </div>
 
         <div class="input-icons">
             <i class="fa fa-envelope icon">
             </i>
-            <input class="input-field" type="text" placeholder="Email" name="email">
+            <input class="input-field" type="text" placeholder="Email" name="email" required>
         </div>
 
         <div class="input-icons">
             <i class="fa fa-key icon">
             </i>
-            <input class="input-field" type="password" placeholder="Wachtwoord" name="password">
+            <input class="input-field" type="password" placeholder="Wachtwoord" name="password" required pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$">
         </div>
         <div class="input-icons">
             <i class="fa fa-key icon">
             </i>
-            <input class="input-field" type="password" placeholder="Verifieer wachtwoord" name="password2">
+            <input class="input-field" type="password" placeholder="Verifieer wachtwoord" name="password2" required pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$">
         </div>
 
         <input class=" input-field" type="submit">

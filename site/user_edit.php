@@ -23,42 +23,42 @@ if (is_post_request()) {
         </div>
     <?php } ?>
 
-        <form method="post">
-            <div class="input-icons">
-                <i class="fa fa-user icon">
-                </i>
-                <input class="input-field" type="text" placeholder="<?php echo $user['first_name']; ?>" name="firstname">
-            </div>
+    <form method="post">
+        <div class="input-icons">
+            <i class="fa fa-user icon">
+            </i>
+            <input class="input-field" type="text" placeholder="<?php echo $user['first_name']; ?>" name="firstname" required pattern="[A-Za-z]+" maxlength="50">
+        </div>
 
-            <div class="input-icons">
-                <i class="fa fa-user icon">
-                </i>
-                <input class="input-field" type="text" placeholder="<?php echo $user['last_name']; ?>" name="lastname">
-            </div>
+        <div class="input-icons">
+            <i class="fa fa-user icon">
+            </i>
+            <input class="input-field" type="text" placeholder="<?php echo $user['last_name']; ?>" name="lastname" required pattern="[A-Za-z]+" maxlength="50">
+        </div>
 
-            <div class="input-icons">
-                <i class="fa fa-envelope icon">
-                </i>
-                <input class="input-field" type="text" placeholder="<?php echo $user['email']; ?>" name="email">
-            </div>
+        <div class="input-icons">
+            <i class="fa fa-envelope icon">
+            </i>
+            <input class="input-field" type="text" placeholder="<?php echo $user['email']; ?>" name="email" required>
+        </div>
 
-            <div class="input-icons">
-                <i class="fa fa-key icon">
-                </i>
-                <input class="input-field" type="password" placeholder="Wachtwoord" name="password">
-            </div>
+        <div class="input-icons">
+            <i class="fa fa-key icon">
+            </i>
+            <input class="input-field" type="password" placeholder="Wachtwoord" name="password" required pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$">
+        </div>
 
-            <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
+        <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
 
-            <div class="input-icons">
-                <i class="fa-solid fa-turn-up icon"></i>
-                <select class="input-field" name="role">
-                    <option value="" selected disabled>Verander de rol</option>
-                    <option value="user">Gebruiker</option>
-                    <option value="administrator">Administrator</option>
-                </select>
-            </div>
+        <div class="input-icons">
+            <i class="fa-solid fa-turn-up icon"></i>
+            <select class="input-field" name="role">
+                <option value="" selected disabled>Verander de rol</option>
+                <option value="user">Gebruiker</option>
+                <option value="administrator">Administrator</option>
+            </select>
+        </div>
 
-            <input class="input-field" type="submit">
-        </form>
+        <input class="input-field" type="submit">
+    </form>
 </div>
