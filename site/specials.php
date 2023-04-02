@@ -34,7 +34,7 @@ if (!$easy_recipe && !$long_recipe && !$most_ingredients) { ?>
                 <?php foreach ($easy_recipe as $easy) {
                 ?>
                     <div class="column">
-                        <div class="card"><a href="<?php echo 'recipe.php?id=' . $easy['id'];
+                        <div class="scard"><a href="<?php echo 'recipe.php?id=' . $easy['id'];
                                                     ?> ">
                                 <img src="public/images/<?php echo $easy['image'];
                                                         ?>" />
@@ -55,7 +55,7 @@ if (!$easy_recipe && !$long_recipe && !$most_ingredients) { ?>
                     <?php foreach ($most_ingredients as $recipe) {
                     ?>
                         <div class="column">
-                            <div class="card"><a href="<?php echo 'recipe.php?id=' . $recipe['id'];
+                            <div class="scard"><a href="<?php echo 'recipe.php?id=' . $recipe['id'];
                                                         ?> ">
                                     <img src="public/images/<?php echo $recipe['image'];
                                                             ?>" />
@@ -79,7 +79,7 @@ if (!$easy_recipe && !$long_recipe && !$most_ingredients) { ?>
                     <?php foreach ($long_recipe as $long) {
                     ?>
                         <div class="column">
-                            <div class="card"><a href="<?php echo 'recipe.php?id=' . $long['id'];
+                            <div class="scard"><a href="<?php echo 'recipe.php?id=' . $long['id'];
                                                         ?> ">
                                     <img src="public/images/<?php echo $long['image'];
                                                             ?>" />
@@ -94,7 +94,9 @@ if (!$easy_recipe && !$long_recipe && !$most_ingredients) { ?>
                 ?>
                 </div>
             </div>
-            <?php include(SHARED_PATH . '/main_end.php'); ?>
+        </div>
+    </div>
+    <?php include(SHARED_PATH . '/main_end.php'); ?>
 
-            <!-- Footer -->
-            <?php include(SHARED_PATH . '/normal_footer.php'); ?>
+    <!-- Footer -->
+    <?php include(SHARED_PATH . '/normal_footer.php'); ?>
